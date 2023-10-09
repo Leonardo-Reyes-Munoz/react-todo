@@ -1,6 +1,6 @@
 import React from "react";
 
-let todoList = [
+const todoList = [
   {
     id: 1234,
     title: "Complete CTD assignment",
