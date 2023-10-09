@@ -21,14 +21,22 @@ let todoList = [
 
 function App() {
   return (
-    <div>
+    <>
       <h1>Todo List</h1>
-      <ul>
-        {todoList.map((item) => {
-          return <li key={item.id}>{item.title}</li>;
-        })}
-      </ul>
-    </div>
+
+      <List />
+      <List />
+    </>
+  );
+}
+
+function List() {
+  return (
+    <ul>
+      {todoList.map((item) => {
+        return <li key={item.id}>{item.title}</li>;
+      })}
+    </ul>
   );
 }
 
