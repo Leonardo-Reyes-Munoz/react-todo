@@ -1,42 +1,80 @@
 import React from "react";
 
-let todoList = [
-  {
-    id: 1234,
-    title: "Complete CTD assignment",
-  },
-  {
-    id: 4321,
-    title: "Go grocery shopping",
-  },
-  {
-    id: 9876,
-    title: "Go the gym",
-  },
-  {
-    id: 4987,
-    title: "Do laundry",
-  },
-];
+function List(props) {
+  return (
+    <div>
+      <h2>{props.title}</h2>
+      <ul>
+        {props.list.map(function (item) {
+          return <Item item={item} />;
+        })}
+      </ul>
+    </div>
+  );
+}
 
-function App() {
+const Item = (props) => {
+  return <li key={props.item.id}>{props.item.title}</li>;
+};
+
+function Search(props) {
+  const [searchTerm, setSearchTerm] = React.useState("");
+
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
+    props.onSearch(event);
+  };
+
+  const handleMouseOver = (event) => {
+    console.log(event);
+  };
+
   return (
     <>
-      <h1>Todo List</h1>
-
-      <List />
-      <List />
+      <label htmlFor="search">Search</label>
+      <input
+        id="search"
+        type="text"
+        onChange={handleChange}
+        onMouseOver={handleChange}
+      />
+      <p>
+        Searching for <strong>{searchTerm}</strong>
+      </p>
     </>
   );
 }
 
-function List() {
+function App() {
+  let todoList = [
+    {
+      id: 1234,
+      title: "Complete CTD assignment",
+    },
+    {
+      id: 4321,
+      title: "Go grocery shopping",
+    },
+    {
+      id: 9876,
+      title: "Go the gym",
+    },
+    {
+      id: 4987,
+      title: "Do laundry",
+    },
+  ];
+
+  const handleSearch = (event) => {
+    console.log(event.target.value);
+  };
+
   return (
-    <ul>
-      {todoList.map((item) => {
-        return <li key={item.id}>{item.title}</li>;
-      })}
-    </ul>
+    <>
+      <h1>Todo List</h1>
+      <Search onSearch={handleSearch} />
+      <List list={todoList} title="React Ecosystem" />
+    </>
   );
 }
 
