@@ -23,6 +23,7 @@ export default function AddTodoForm({ onAddTodo }) {
         name="title"
         value={todoTitle}
         onChange={handleTitleChange}
+        required
       />
       <button type="submit">Add</button>
     </form>
