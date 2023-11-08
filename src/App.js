@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <h1>Todo List</h1>
-      <AddTodoForm onAddTodo={addTodo} />
+      <AddTodoForm addTodo={addTodo} />
       <TodoList todoList={todoList} />
     </>
   );
