@@ -21,11 +21,18 @@ function App() {
     setTodoList((prevTodos) => [...prevTodos, newTodo]);
   }
 
+  function removeTodo(id) {
+    const filteredTodoList = todoList.filter((item) => {
+      return item.id !== id;
+    });
+    setTodoList(filteredTodoList);
+  }
+
   return (
     <>
       <h1>Todo List</h1>
       <AddTodoForm addTodo={addTodo} />
-      <TodoList todoList={todoList} />
+      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
     </>
   );
 }
