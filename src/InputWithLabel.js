@@ -12,7 +12,7 @@ const InputWithLabel = (props) => {
       <label htmlFor="inputField">{props.children}</label>
       <input
         type="text"
-        id="inputField" // is and "id" attribute needed here?
+        id="inputField"
         name="title"
         value={props.todoTitle}
         onChange={props.handleTitleChange}

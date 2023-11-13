@@ -4,11 +4,10 @@ import TodoListItem from './TodoListItem';
 function TodoList({ todoList, onRemoveTodo }) {
   return (
     <ul>
-      {todoList.map(({ id, title }) => (
+      {todoList.map((todo) => (
         <TodoListItem
-          key={id} //are both "key" and "id" needed to preserve id prop.
-          id={id}
-          todo={title}
+          key={todo.id} //are both "key" and "id" needed to preserve "id" prop?
+          todo={todo}
           onRemoveTodo={onRemoveTodo}
         />
       ))}
