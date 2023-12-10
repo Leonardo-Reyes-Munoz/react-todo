@@ -1,23 +1,6 @@
 import React from 'react';
 
-const initialStories = [
-  {
-    title: 'React',
-    url: 'https://reactjs.org/',
-    author: 'Jordan Walke',
-    num_comments: 3,
-    points: 4,
-    objectID: 0,
-  },
-  {
-    title: 'Redux',
-    url: 'https://redux.js.org/',
-    author: 'Dan Abramov, Andrew Clark',
-    num_comments: 2,
-    points: 5,
-    objectID: 1,
-  },
-];
+const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?query=';
 
 const storiesReducer = (state, action) => {
   switch (action.type) {
@@ -52,23 +35,18 @@ const storiesReducer = (state, action) => {
   }
 };
 
+const useSemiPersistentState = (key, initialState) => {
+  const [value, setValue] = React.useState(
+    localStorage.getItem(key) || initialState
+  );
+  React.useEffect(() => {
+    localStorage.setItem(key, value);
+  }, [value]);
+
+  return [value, setValue];
+};
+
 function App() {
-  const getAsyncStories = () =>
-    new Promise((resolve) =>
-      setTimeout(() => resolve({ data: { stories: initialStories } }), 2000)
-    );
-
-  const useSemiPersistentState = (key, initialState) => {
-    const [value, setValue] = React.useState(
-      localStorage.getItem(key) || initialState
-    );
-    React.useEffect(() => {
-      localStorage.setItem(key, value);
-    }, [value]);
-
-    return [value, setValue];
-  };
-
   // state management
   const [searchTerm, setSearchTerm] = useSemiPersistentState('search', 'React');
 
@@ -79,19 +57,28 @@ function App() {
     isError: false,
   });
 
-  React.useEffect(() => {
+  const [url, setUrl] = React.useState(`${API_ENDPOINT}${searchTerm}`);
+
+  const handleFetchStories = React.useCallback(() => {
+    if (!searchTerm) return;
+
     dispatchStories({ type: 'STORIES_FETCH_INIT' });
 
-    getAsyncStories()
+    fetch(url)
+      .then((response) => response.json())
       .then((result) => {
         // New way of setting stories state
         dispatchStories({
           type: 'STORIES_FETCH_SUCCESS',
-          payload: result.data.stories,
+          payload: result.hits,
         });
       })
       .catch(() => dispatchStories({ type: 'STORIES_FETCH_FAILURE' }));
-  }, []);
+  }, [url]);
+
+  React.useEffect(() => {
+    handleFetchStories();
+  }, [handleFetchStories]);
 
   const handleRemoveStory = (item) => {
     dispatchStories({
@@ -100,14 +87,13 @@ function App() {
     });
   };
 
-  const handleSearch = (event) => {
-    console.log(event.target.value);
+  const handleSearchInput = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  const searchStories = stories.data.filter((story) =>
-    story.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
-  );
+  const handleSearchSubmit = () => {
+    setUrl(`${API_ENDPOINT}${searchTerm}`);
+  };
 
   return (
     <>
@@ -116,17 +102,20 @@ function App() {
       <InputWithLabel
         id="search"
         value={searchTerm}
-        onInputChange={handleSearch}
+        onInputChange={handleSearchInput}
       >
         <strong>Search:</strong>
       </InputWithLabel>
+      <button type="button" disabled={!searchTerm} onClick={handleSearchSubmit}>
+        Submit
+      </button>
 
       <hr />
       {stories.isError && <p>Something went wrong...</p>}
       {stories.isLoading ? (
         <p>Loading...</p>
       ) : (
-        <List list={searchStories} onRemoveItem={handleRemoveStory} />
+        <List list={stories.data} onRemoveItem={handleRemoveStory} />
       )}
     </>
   );
