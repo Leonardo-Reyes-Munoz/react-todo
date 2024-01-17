@@ -23,7 +23,7 @@ export default function AddTodoForm({ addTodo }) {
           todoTitle={todoTitle}
           handleTitleChange={handleTitleChange}
         >
-          New Task
+          <span>New Task</span>
         </InputWithLabel>
         <button type="submit" className={`${styles.btn} ${styles.add}`}>
           <span className="material-symbols-outlined">add</span>

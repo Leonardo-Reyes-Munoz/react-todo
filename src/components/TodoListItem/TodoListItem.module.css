@@ -3,9 +3,11 @@
   justify-content: space-between;
   margin: 0.25rem 1rem 0.25rem 1rem;
   align-items: center;
+  font-family: 'Playpen Sans', cursive;
 }
 
-.remove {
+.remove,
+.edit {
   background-color: var(--off-white);
   color: var(--happy-blue);
   border-color: var(--happy-blue);

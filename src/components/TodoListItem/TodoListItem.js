@@ -14,6 +14,9 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
         >
           <span className="material-symbols-outlined">delete</span>
         </button>
+        <button type="button" className={` ${styles.edit}`}>
+          <span className="material-symbols-outlined">edit</span>
+        </button>
       </div>
       <hr />
     </React.Fragment>
