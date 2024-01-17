@@ -31,7 +31,7 @@ h1 {
   font-size: 1.5rem;
 }
 
-.btn {
+button {
   appearance: none;
   font-family: inherit;
   font-size: 100%;

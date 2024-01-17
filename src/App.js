@@ -1,8 +1,8 @@
 import React from 'react';
-import AddTodoForm from './AddTodoForm';
-import TodoList from './TodoList';
+import AddTodoForm from './components/AddTodoForm/AddTodoForm';
+import TodoList from './components/TodoList/TodoList';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './Navbar';
+import Navbar from './components/NavBar/Navbar';
 
 function App() {
   const [todoList, setTodoList] = React.useState([]);

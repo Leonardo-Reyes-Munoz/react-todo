@@ -1,5 +1,5 @@
 import React from 'react';
-import InputWithLabel from './InputWithLabel';
+import InputWithLabel from '../InputWithLabel/InputWithLabel';
 import styles from './AddTodoForm.module.css';
 
 export default function AddTodoForm({ addTodo }) {
