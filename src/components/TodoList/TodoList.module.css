@@ -4,6 +4,7 @@
   max-width: 25rem;
   margin: auto;
   padding-top: 0;
+  box-shadow: 5px 5px 5px var(--relaxed-gray);
 }
 
 input[type='checkbox' i]:checked + label {
