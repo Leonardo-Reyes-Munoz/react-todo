@@ -17,16 +17,18 @@ export default function AddTodoForm({ addTodo }) {
   }
 
   return (
-    <form onSubmit={handleAddTodo} className={styles.AddTodoForm}>
-      <InputWithLabel
-        todoTitle={todoTitle}
-        handleTitleChange={handleTitleChange}
-      >
-        Title
-      </InputWithLabel>
-      <button type="submit" className={`${styles.btn} ${styles.add}`}>
-        <span className="material-symbols-outlined">add</span>
-      </button>
-    </form>
+    <div className={styles.AddTodoForm}>
+      <form onSubmit={handleAddTodo}>
+        <InputWithLabel
+          todoTitle={todoTitle}
+          handleTitleChange={handleTitleChange}
+        >
+          New Task
+        </InputWithLabel>
+        <button type="submit" className={`${styles.btn} ${styles.add}`}>
+          <span className="material-symbols-outlined">add</span>
+        </button>
+      </form>
+    </div>
   );
 }
