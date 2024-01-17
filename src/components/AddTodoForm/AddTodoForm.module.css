@@ -19,6 +19,7 @@ input[type='text' i] {
   border-radius: 0.25rem;
   border-style: solid;
   border-width: 0.1rem;
+  font-family: 'Playpen Sans', cursive;
 }
 
 .add {
