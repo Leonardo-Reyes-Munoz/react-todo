@@ -1,3 +1,19 @@
 .ListItem {
-  color: blue;
+  .todo-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.25rem 1rem 0.25rem 1rem;
+    align-items: center;
+  }
+
+  .remove {
+    background-color: var(--light-background);
+    color: var(--neutral-blue);
+    border-color: var(--neutral-blue);
+  }
+
+  .remove:hover {
+    color: var(--negative-red);
+    border-color: var(--negative-red);
+  }
 }
