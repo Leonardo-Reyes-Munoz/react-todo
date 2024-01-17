@@ -11,13 +11,28 @@
 }
 
 :root {
-  --light-background: #ece9e9;
-  --dark-background: #1b1c1d;
-  --neutral-blue: #2185d0;
-  --positive-green: #21ba45;
-  --negative-red: #db2828;
-  --purple: #a333c8;
-  --grey: #767676;
+  /* Page Color palette */
+  --off-white: #f8f6ea;
+  --dark-gray: #706d61;
+
+  /* relaxed color palette */
+  --relaxed-orange: #ffae59;
+  --relaxed-yellow: #e8bb75;
+  --relaxed-brown: #c4b191;
+  --relaxed-gray: #999387;
+  --relaxed-purple: #7d7278;
+
+  /* Action color palette */
+  --action-blue: #2185d0;
+  --action-green: #21ba45;
+  --action-red: #db2828;
+
+  /* Happy Color Palette */
+  --happy-pink: #f06a8a;
+  --happy-blue: #8fdbbf;
+  --happy-yellow: #fae360;
+  --happy-white: #f0f1df;
+  --happy-orange: #f48e35;
 }
 
 body {
@@ -40,6 +55,11 @@ button {
   border-radius: 4px;
   border-style: solid;
   border-width: 0.1rem;
+}
+
+.page-title {
+  color: var(--relaxed-gray);
+  text-align: center;
 }
 
 /* TABLET FORMATTING */

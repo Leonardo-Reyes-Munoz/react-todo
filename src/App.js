@@ -72,7 +72,7 @@ function App() {
           element={
             <>
               <Navbar />
-              <h1>Todo List</h1>
+              <h1 className="page-title">Weekly Tasks</h1>
               <AddTodoForm addTodo={addTodo} />
               {isLoading ? (
                 <p>Loading...</p>
