@@ -11,7 +11,7 @@
 }
 
 :root {
-  --light-background: #ffffff;
+  --light-background: #ece9e9;
   --dark-background: #1b1c1d;
   --neutral-blue: #2185d0;
   --positive-green: #21ba45;
@@ -22,55 +22,13 @@
 
 body {
   margin: 0;
-  background-color: var(--dark-background);
+  background-color: var(--light-background);
   height: 100vh;
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
 h1 {
   font-size: 1.5rem;
-}
-
-ul {
-  list-style: none;
-  align-content: right;
-}
-
-hr {
-  background-color: rgba(158, 154, 154, 0.43);
-  height: 1px;
-  border: none;
-}
-
-.nav {
-  background-color: #333;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-  padding: 1.5rem 1rem;
-}
-
-.nav a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.nav ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-}
-
-.na li:hover {
-  background-color: #777;
-}
-
-.site-title {
-  font-size: 2rem;
 }
 
 .btn {
@@ -82,31 +40,6 @@ hr {
   border-radius: 4px;
   border-style: solid;
   border-width: 0.1rem;
-}
-
-input[type='text' i] {
-  width: 70%;
-  height: 2rem;
-  margin-left: 1rem;
-  font-size: 100%;
-  border-radius: 0.25rem;
-  border-style: solid;
-  border-width: 0.1rem;
-}
-
-input[type='checkbox' i]:checked + label {
-  text-decoration: line-through;
-}
-
-/* || TODO LIST */
-
-.todo-list {
-  background-color: var(--light-background);
-  border-radius: 1rem;
-  max-width: 25rem;
-  margin: auto;
-  padding: 2rem 1rem;
-  text-align: center;
 }
 
 /* TABLET FORMATTING */

@@ -1,11 +1,13 @@
+import styles from './Navbar.module.css';
+
 export default function Navbar() {
   return (
-    <nav className="nav">
-      <a href="/" className="site-title">
+    <nav className={styles.nav}>
+      <a href="/" className={styles.SiteTitle}>
         Todo Buddy
       </a>
       <ul>
-        <li className="active">
+        <li>
           <a href="/shared">Shared Tasks</a>
         </li>
         <li>

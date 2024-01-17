@@ -7,10 +7,10 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
       {todo.title}
       <button
         type="button"
-        className={styles.remove}
+        className={`${styles.remove} ${styles.btn}`}
         onClick={() => onRemoveTodo(todo.id)}
       >
-        <span className="material-symbols-outlined">add</span>
+        <span className="material-symbols-outlined">delete</span>
       </button>
     </li>
   );
