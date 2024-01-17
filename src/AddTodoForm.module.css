@@ -1,0 +1,18 @@
+.AddTodoForm {
+  margin: 0.25rem 1rem 0.25rem 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.add {
+  background-color: var(--light-background);
+  color: var(--purple);
+  border-color: var(--purple);
+  border-radius: 50%;
+}
+
+.add:hover {
+  background-color: var(--light-background);
+  color: var(--positive-green);
+  border-color: var(--positive-green);
+}
