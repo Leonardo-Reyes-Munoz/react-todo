@@ -13,9 +13,18 @@
   border-color: var(--happy-blue);
 }
 
+.remove {
+  margin-right: 0.5rem;
+}
+
 .remove:hover {
   color: var(--action-red);
   border-color: var(--action-red);
+}
+
+.edit:hover {
+  color: var(--action-blue);
+  border-color: var(--action-blue);
 }
 
 hr {
