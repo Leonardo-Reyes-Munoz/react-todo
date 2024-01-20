@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './TodoListItem.module.css';
+import PropTypes from 'prop-types';
 
 const TodoListItem = ({ todo, onRemoveTodo }) => {
   return (
@@ -25,6 +26,11 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
       <hr />
     </React.Fragment>
   );
+};
+
+TodoListItem.propTypes = {
+  todo: PropTypes.object,
+  onRemoveTodo: PropTypes.func.isRequired,
 };
 
 export default TodoListItem;
