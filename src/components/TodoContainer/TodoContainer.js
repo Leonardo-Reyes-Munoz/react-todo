@@ -20,14 +20,49 @@ function TodoContainer({
     };
 
     try {
+      // Query Params need to be url encoded according to API Documentation:
+      //  https://airtable.com/developers/web/api/list-records
       const view = '?view=Grid%20view';
-      const response = await fetch(`${url}${view}`, options);
+      const titleAsc =
+        '?sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc';
+
+      const response = await fetch(`${url}`, options);
 
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
 
       const data = await response.json();
+
+      console.log(data.records);
+
+      // data.records.sort((objectA, objectB) => {
+      //   console.log(objectA.title);
+      //   const titleA = objectA.fields.title.toUpperCase();
+      //   const titleB = objectB.fields.title.toUpperCase();
+
+      //   if (titleA < titleB) {
+      //     return -1;
+      //   } else if (titleA > titleB) {
+      //     return 1;
+      //   } else {
+      //     return 0;
+      //   }
+      // });
+
+      data.records.sort((objectA, objectB) => {
+        console.log(objectA.title);
+        const titleA = objectA.fields.title.toUpperCase();
+        const titleB = objectB.fields.title.toUpperCase();
+
+        if (titleA < titleB) {
+          return 1;
+        } else if (titleA > titleB) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
 
       const todos = data.records.map((todo) => {
         const newTodo = {
