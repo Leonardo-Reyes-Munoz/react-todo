@@ -1,6 +1,6 @@
 import React from 'react';
 import AddTodoForm from './components/AddTodoForm/AddTodoForm';
-import TodoList from './components/TodoList/TodoList';
+import TodoContainer from './components/TodoContainer/TodoContainer';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/NavBar/Navbar';
 
@@ -77,7 +77,7 @@ function App() {
               {isLoading ? (
                 <p>Loading...</p>
               ) : (
-                <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+                <TodoContainer todoList={todoList} onRemoveTodo={removeTodo} />
               )}
             </>
           }
