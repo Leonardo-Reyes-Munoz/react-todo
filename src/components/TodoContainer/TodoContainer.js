@@ -20,7 +20,8 @@ function TodoContainer({
     };
 
     try {
-      const response = await fetch(url, options);
+      const view = '?view=Grid%20view';
+      const response = await fetch(`${url}${view}`, options);
 
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
