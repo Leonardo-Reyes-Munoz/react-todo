@@ -3,11 +3,11 @@ import TodoListItem from '../TodoListItem/TodoListItem';
 
 import PropTypes from 'prop-types';
 
-function TodoList({ todoList, onRemoveTodo }) {
+function TodoList({ todoList, removeTodo }) {
   return (
     <ul>
       {todoList.map((todo) => (
-        <TodoListItem key={todo.id} todo={todo} onRemoveTodo={onRemoveTodo} />
+        <TodoListItem key={todo.id} todo={todo} onRemoveTodo={removeTodo} />
       ))}
     </ul>
   );
@@ -15,7 +15,7 @@ function TodoList({ todoList, onRemoveTodo }) {
 
 TodoList.propTypes = {
   todoList: PropTypes.array,
-  onRemoveTodo: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired,
 };
 
 export default TodoList;
