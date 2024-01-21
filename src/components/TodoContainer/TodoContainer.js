@@ -49,7 +49,6 @@ function TodoContainer({
       // });
 
       data.records.sort((objectA, objectB) => {
-        console.log(objectA.title);
         const titleA = objectA.fields.title.toUpperCase();
         const titleB = objectB.fields.title.toUpperCase();
 
