@@ -34,8 +34,6 @@ function TodoContainer({
 
       const data = await response.json();
 
-      console.log(data.records);
-
       // data.records.sort((objectA, objectB) => {
       //   console.log(objectA.title);
       //   const titleA = objectA.fields.title.toUpperCase();
