@@ -33,6 +33,9 @@ const TodoListItem = ({ todo, removeTodo, index, sortChecked }) => {
           >
             <span className="material-symbols-outlined">delete</span>
           </button>
+          <button type="button" className={styles.edit}>
+            <span className="material-symbols-outlined">edit</span>
+          </button>
         </div>
       </div>
       q
