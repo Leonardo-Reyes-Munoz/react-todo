@@ -26,7 +26,7 @@ const TodoListItem = ({ todo, removeTodo, index, sortChecked }) => {
           <button
             type="button"
             className={` ${styles.remove}`}
-            onRemoveTodo={() => removeTodo(todo.id)}
+            onClick={() => removeTodo(todo.id)}
           >
             <span className="material-symbols-outlined">delete</span>
           </button>
@@ -42,7 +42,9 @@ const TodoListItem = ({ todo, removeTodo, index, sortChecked }) => {
 
 TodoListItem.propTypes = {
   todo: PropTypes.object,
-  onRemoveTodo: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  sortChecked: PropTypes.func.isRequired,
 };
 
 export default TodoListItem;

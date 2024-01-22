@@ -1,6 +1,5 @@
 import React from 'react';
 import TodoListItem from '../TodoListItem/TodoListItem';
-
 import PropTypes from 'prop-types';
 
 function TodoList({ todoList, removeTodo, sortChecked }) {
@@ -22,6 +21,7 @@ function TodoList({ todoList, removeTodo, sortChecked }) {
 TodoList.propTypes = {
   todoList: PropTypes.array,
   removeTodo: PropTypes.func.isRequired,
+  sortChecked: PropTypes.func.isRequired,
 };
 
 export default TodoList;

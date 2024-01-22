@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from '../TodoList/TodoList';
 import styles from './TodoContainer.module.css';
+import PropTypes from 'prop-types';
 
 function TodoContainer({
   displayTodoList,
@@ -35,7 +36,6 @@ function TodoContainer({
       }
 
       const data = await response.json();
-      console.log(data.records);
 
       const todos = data.records.map((todo) => {
         const newTodo = {
@@ -72,6 +72,14 @@ function TodoContainer({
           return 0;
         }
       });
+      // Sort by isChecked does not work properly. Updating TodoList with "isChecked" state for todo item is needed first.
+      // todoList.sort((objectA, objectB) => {
+      //   return objectA.isChecked === objectB.isChecked
+      //     ? 0
+      //     : objectA.isChecked
+      //     ? -1
+      //     : 1;
+      // });
       setSort(!sort);
       displayTodoList(todoList);
     } else {
@@ -88,6 +96,14 @@ function TodoContainer({
           return 0;
         }
       });
+      // Sort by isChecked does not work properly. Updating TodoList with "isChecked" state for todo item is needed first.
+      // todoList.sort((objectA, objectB) => {
+      //   return objectA.isChecked === objectB.isChecked
+      //     ? 0
+      //     : objectA.isChecked
+      //     ? -1
+      //     : 1;
+      // });
       setSort(!sort);
       displayTodoList(todoList);
     }
@@ -131,5 +147,13 @@ function TodoContainer({
     </React.Fragment>
   );
 }
+
+TodoContainer.propTypes = {
+  displayTodoList: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool,
+  todoList: PropTypes.array,
+  tableName: PropTypes.string,
+};
 
 export default TodoContainer;
