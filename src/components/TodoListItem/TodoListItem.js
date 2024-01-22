@@ -2,19 +2,31 @@ import React from 'react';
 import styles from './TodoListItem.module.css';
 import PropTypes from 'prop-types';
 
-const TodoListItem = ({ todo, onRemoveTodo }) => {
+const TodoListItem = ({ todo, removeTodo, index, sortChecked }) => {
+  const [isChecked, setIsChecked] = React.useState(false);
+
+  function handleChecked(index, isChecked) {
+    sortChecked(index, isChecked);
+    setIsChecked(!isChecked);
+  }
+
   return (
     <React.Fragment>
       <div className={styles.TodoItem}>
         <div>
-          <input id={todo.id} type="checkbox" />
+          <input
+            id={todo.id}
+            type="checkbox"
+            checked={isChecked}
+            onChange={() => handleChecked(index, isChecked)}
+          />
           <label htmlFor={todo.id}>{todo.title}</label>
         </div>
         <div>
           <button
             type="button"
             className={` ${styles.remove}`}
-            onClick={() => onRemoveTodo(todo.id)}
+            onRemoveTodo={() => removeTodo(todo.id)}
           >
             <span className="material-symbols-outlined">delete</span>
           </button>

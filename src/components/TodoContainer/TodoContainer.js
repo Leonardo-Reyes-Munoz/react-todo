@@ -26,6 +26,7 @@ function TodoContainer({
       // const titleAsc =
       //   '?sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc';
 
+      // Query param to fetch data is displayed on Airtable
       const view = '?view=Grid%20view';
       const response = await fetch(`${url}${view}`, options);
 
@@ -34,6 +35,7 @@ function TodoContainer({
       }
 
       const data = await response.json();
+      console.log(data.records);
 
       const todos = data.records.map((todo) => {
         const newTodo = {
@@ -91,6 +93,21 @@ function TodoContainer({
     }
   }
 
+  function sortChecked(index, isChecked) {
+    const updatedTodo = todoList.splice(index, 1)[0];
+
+    let updatedTodoList = todoList
+      .slice(0, index)
+      .concat(todoList.slice(index));
+
+    if (!isChecked) {
+      updatedTodoList.push(updatedTodo);
+    } else if (isChecked) {
+      updatedTodoList.unshift(updatedTodo);
+    }
+    displayTodoList(updatedTodoList);
+  }
+
   return (
     <React.Fragment>
       {isLoading ? (
@@ -103,7 +120,12 @@ function TodoContainer({
               <span className="material-symbols-outlined">swap_vert</span>
             </button>
           </h1>
-          <TodoList todoList={todoList} removeTodo={removeTodo} />
+          <TodoList
+            todoList={todoList}
+            removeTodo={removeTodo}
+            displayTodoList={displayTodoList}
+            sortChecked={sortChecked}
+          />
         </div>
       )}
     </React.Fragment>
