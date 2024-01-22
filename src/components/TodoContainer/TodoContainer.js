@@ -36,7 +36,6 @@ function TodoContainer({
       }
 
       const data = await response.json();
-      console.log(data.records);
 
       const todos = data.records.map((todo) => {
         const newTodo = {
