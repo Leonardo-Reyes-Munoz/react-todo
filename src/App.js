@@ -47,6 +47,7 @@ function App() {
                 isLoading={isLoading}
                 displayTodoList={displayTodoList}
                 removeTodo={removeTodo}
+                tableName="Monday"
               />
             </>
           }

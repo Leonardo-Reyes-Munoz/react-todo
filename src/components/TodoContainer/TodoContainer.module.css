@@ -26,3 +26,15 @@ ul {
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
 }
+
+.sort {
+  background-color: var(--happy-yellow);
+  color: white;
+  border-style: none;
+  vertical-align: middle;
+  margin-left: 2rem;
+}
+
+.sort:hover {
+  color: var(--action-blue);
+}
