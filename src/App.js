@@ -1,7 +1,8 @@
 import React from 'react';
-import AddTodoForm from './AddTodoForm';
-import TodoList from './TodoList';
+import AddTodoForm from './components/AddTodoForm/AddTodoForm';
+import TodoList from './components/TodoList/TodoList';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './components/NavBar/Navbar';
 
 function App() {
   const [todoList, setTodoList] = React.useState([]);
@@ -70,7 +71,8 @@ function App() {
           path="/"
           element={
             <>
-              <h1>Todo List</h1>
+              <Navbar />
+              <h1 className="page-title">Weekly Tasks</h1>
               <AddTodoForm addTodo={addTodo} />
               {isLoading ? (
                 <p>Loading...</p>

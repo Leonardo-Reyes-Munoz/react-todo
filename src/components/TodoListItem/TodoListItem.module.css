@@ -1,0 +1,34 @@
+.TodoItem {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.25rem 1rem 0.25rem 1rem;
+  align-items: center;
+  font-family: 'Playpen Sans', cursive;
+}
+
+.remove,
+.edit {
+  background-color: var(--off-white);
+  color: var(--happy-blue);
+  border-color: var(--happy-blue);
+}
+
+.remove {
+  margin-right: 0.5rem;
+}
+
+.remove:hover {
+  color: var(--action-red);
+  border-color: var(--action-red);
+}
+
+.edit:hover {
+  color: var(--action-blue);
+  border-color: var(--action-blue);
+}
+
+hr {
+  background-color: rgba(158, 154, 154, 0.43);
+  height: 1px;
+  border: none;
+}

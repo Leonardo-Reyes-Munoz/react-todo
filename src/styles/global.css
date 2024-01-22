@@ -1,0 +1,67 @@
+/* || IMPORTED GOOGLE FONTS */
+
+/* || IMPORTED GOOGLE ICONS */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* || GENERAL STYLES */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Page Color palette */
+  --off-white: #f8f6ea;
+  --dark-gray: #706d61;
+
+  /* relaxed color palette */
+  --relaxed-orange: #ffae59;
+  --relaxed-yellow: #e8bb75;
+  --relaxed-brown: #c4b191;
+  --relaxed-gray: #999387;
+  --relaxed-purple: #7d7278;
+
+  /* Action color palette */
+  --action-blue: #2185d0;
+  --action-green: #21ba45;
+  --action-red: #db2828;
+
+  /* Happy Color Palette */
+  --happy-pink: #f06a8a;
+  --happy-blue: #8fdbbf;
+  --happy-yellow: #fae360;
+  --happy-white: #f0f1df;
+  --happy-orange: #f48e35;
+}
+
+body {
+  margin: 0;
+  background-color: var(--light-background);
+  height: 100vh;
+  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+button {
+  appearance: none;
+  font-family: inherit;
+  font-size: 100%;
+  padding: 0.3em;
+  margin-left: auto;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 0.1rem;
+}
+
+.page-title {
+  color: var(--relaxed-gray);
+  text-align: center;
+}
+
+/* TABLET FORMATTING */
+
+/* DESKTOP FORMATTING */

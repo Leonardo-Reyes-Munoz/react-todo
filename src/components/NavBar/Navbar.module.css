@@ -1,0 +1,33 @@
+.nav {
+  background-color: var(--relaxed-orange);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem 1rem;
+  /* Google Font */
+  font-family: 'Sriracha', cursive;
+}
+
+.nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.SiteTitle {
+  font-size: 2.5rem;
+}
+
+.SiteTitle > span {
+  font-size: 3rem;
+  vertical-align: sub;
+}

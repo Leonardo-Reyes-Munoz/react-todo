@@ -1,0 +1,28 @@
+.TodoList {
+  background-color: var(--off-white);
+  border-radius: 1rem;
+  max-width: 25rem;
+  margin: auto;
+  padding-top: 0;
+  box-shadow: 5px 5px 5px var(--relaxed-gray);
+}
+
+input[type='checkbox' i]:checked + label {
+  text-decoration: line-through;
+}
+
+ul {
+  list-style: none;
+  padding: 0 1rem 1rem 1rem;
+}
+
+.title {
+  color: white;
+  background-color: var(--happy-yellow);
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 0;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
