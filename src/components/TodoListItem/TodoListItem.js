@@ -3,7 +3,7 @@ import styles from './TodoListItem.module.css';
 
 const TodoListItem = ({ todo, onRemoveTodo }) => {
   return (
-    <React.Fragment>
+    <>
       <div className={styles.TodoItem}>
         <div>
           <input id={todo.id} type="checkbox" />
@@ -12,7 +12,7 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
         <div>
           <button
             type="button"
-            className={` ${styles.remove}`}
+            className={styles.remove}
             onClick={() => onRemoveTodo(todo.id)}
           >
             <span className="material-symbols-outlined">delete</span>
@@ -23,7 +23,7 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
         </div>
       </div>
       <hr />
-    </React.Fragment>
+    </>
   );
 };
 
