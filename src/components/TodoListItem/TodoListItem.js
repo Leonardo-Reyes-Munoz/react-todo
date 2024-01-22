@@ -11,7 +11,7 @@ const TodoListItem = ({ todo, removeTodo, index, sortChecked }) => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <div className={styles.TodoItem}>
         <div>
           <input
@@ -37,7 +37,7 @@ const TodoListItem = ({ todo, removeTodo, index, sortChecked }) => {
       </div>
       q
       <hr />
-    </React.Fragment>
+    </>
   );
 };
 

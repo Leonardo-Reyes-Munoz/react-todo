@@ -4,17 +4,14 @@ import PropTypes from 'prop-types';
 
 function TodoList({ todoList, removeTodo, sortChecked }) {
   return (
-    <ul>
-      {todoList.map((todo) => (
-        <TodoListItem
-          key={todo.id}
-          todo={todo}
-          removeTodo={removeTodo}
-          index={todoList.indexOf(todo)}
-          sortChecked={sortChecked}
-        />
-      ))}
-    </ul>
+    <div className={styles.TodoList}>
+      <h3 className={styles.title}>Monday</h3>
+      <ul>
+        {todoList.map((todo) => (
+          <TodoListItem key={todo.id} todo={todo} onRemoveTodo={onRemoveTodo} />
+        ))}
+      </ul>
+    </div>
   );
 }
 
