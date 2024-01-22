@@ -49,3 +49,15 @@ ul {
     width: 50%;
   }
 }
+
+.sort {
+  background-color: var(--happy-yellow);
+  color: white;
+  border-style: none;
+  vertical-align: middle;
+  margin-left: 2rem;
+}
+
+.sort:hover {
+  color: var(--action-blue);
+}
