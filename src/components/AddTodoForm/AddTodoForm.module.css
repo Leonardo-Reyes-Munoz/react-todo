@@ -42,3 +42,21 @@ input[type='text' i] {
 span {
   font-family: 'Sriracha', cursive;
 }
+
+/* TABLET FORMATTING */
+@media screen and (max-width: 820px) {
+  .AddTodoForm {
+    max-width: 80%;
+  }
+}
+
+/* MOBILE FORMATTING */
+@media screen and (max-width: 430px) {
+  .AddTodoForm {
+    max-width: 90%;
+  }
+
+  input[type='text' i] {
+    width: 50%;
+  }
+}

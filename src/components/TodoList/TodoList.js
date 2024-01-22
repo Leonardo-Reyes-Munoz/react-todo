@@ -9,11 +9,7 @@ function TodoList({ todoList, onRemoveTodo }) {
       <h3 className={styles.title}>Monday</h3>
       <ul>
         {todoList.map((todo) => (
-          <TodoListItem
-            key={todo.id} //are both "key" and "id" needed to preserve "id" prop?
-            todo={todo}
-            onRemoveTodo={onRemoveTodo}
-          />
+          <TodoListItem key={todo.id} todo={todo} onRemoveTodo={onRemoveTodo} />
         ))}
       </ul>
     </div>

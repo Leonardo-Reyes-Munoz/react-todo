@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const TodoListItem = ({ todo, onRemoveTodo }) => {
   return (
-    <React.Fragment>
+    <>
       <div className={styles.TodoItem}>
         <div>
           <input id={todo.id} type="checkbox" />
@@ -25,7 +25,7 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
       </div>
       q
       <hr />
-    </React.Fragment>
+    </>
   );
 };
 
