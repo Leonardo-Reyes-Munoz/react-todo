@@ -29,7 +29,7 @@ const TodoListItem = ({ todo, removeTodo, index, sortChecked }) => {
           <button
             type="button"
             className={styles.remove}
-            onClick={() => onRemoveTodo(todo.id)}
+            onClick={() => removeTodo(todo.id)}
           >
             <span className="material-symbols-outlined">delete</span>
           </button>
