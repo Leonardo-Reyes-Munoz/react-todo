@@ -25,12 +25,12 @@ const TodoListItem = ({ todo, removeTodo, index, sortChecked }) => {
         <div>
           <button
             type="button"
-            className={` ${styles.remove}`}
+            className={styles.remove}
             onClick={() => removeTodo(todo.id)}
           >
             <span className="material-symbols-outlined">delete</span>
           </button>
-          <button type="button" className={` ${styles.edit}`}>
+          <button type="button" className={styles.edit}>
             <span className="material-symbols-outlined">edit</span>
           </button>
         </div>
