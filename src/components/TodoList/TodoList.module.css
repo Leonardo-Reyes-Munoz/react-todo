@@ -26,3 +26,14 @@ ul {
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
 }
+
+/* MOBILE FORMATTING */
+@media screen and (max-width: 430px) {
+  .TodoList {
+    max-width: 90%;
+  }
+
+  input[type='text' i] {
+    width: 50%;
+  }
+}

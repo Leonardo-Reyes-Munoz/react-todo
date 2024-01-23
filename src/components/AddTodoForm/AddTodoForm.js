@@ -25,7 +25,7 @@ export default function AddTodoForm({ addTodo }) {
         >
           <span>New Task</span>
         </InputWithLabel>
-        <button type="submit" className={`${styles.btn} ${styles.add}`}>
+        <button type="submit" className={styles.add}>
           <span className="material-symbols-outlined">add</span>
         </button>
       </form>
