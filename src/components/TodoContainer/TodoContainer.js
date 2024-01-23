@@ -12,7 +12,7 @@ function TodoContainer({
 }) {
   const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/`;
 
-  const fetchData = async () => {
+  const fetchData = React.useCallback(async () => {
     const options = {
       method: 'GET',
       headers: {
@@ -49,11 +49,11 @@ function TodoContainer({
     } catch (error) {
       console.log(error.message);
     }
-  };
+  }, [url, displayTodoList]);
 
   React.useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   const [sort, setSort] = React.useState(false);
 
