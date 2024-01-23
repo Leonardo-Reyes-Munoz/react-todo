@@ -11,18 +11,19 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
           <label htmlFor={todo.id}>{todo.title}</label>
         </div>
         <div>
+          <button type="button" className={styles.edit}>
+            <span className="material-symbols-outlined">edit</span>
+          </button>
           <button
             type="button"
-            className={` ${styles.remove}`}
+            className={styles.remove}
             onClick={() => onRemoveTodo(todo.id)}
           >
             <span className="material-symbols-outlined">delete</span>
           </button>
-          <button type="button" className={` ${styles.edit}`}>
-            <span className="material-symbols-outlined">edit</span>
-          </button>
         </div>
       </div>
+      q
       <hr />
     </React.Fragment>
   );
