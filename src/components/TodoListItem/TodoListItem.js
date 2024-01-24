@@ -23,7 +23,6 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
           </button>
         </div>
       </div>
-      q
       <hr />
     </>
   );
