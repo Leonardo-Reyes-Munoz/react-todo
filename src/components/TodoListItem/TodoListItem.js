@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './TodoListItem.module.css';
 import PropTypes from 'prop-types';
 
-const TodoListItem = ({ todo, removeTodo, index, sortChecked }) => {
+const TodoListItem = ({ todo, handleRemoveTodo, index, sortChecked }) => {
   const [isChecked, setIsChecked] = React.useState(false);
 
   function handleChecked(index, isChecked) {
@@ -32,7 +32,7 @@ const TodoListItem = ({ todo, removeTodo, index, sortChecked }) => {
           <button
             type="button"
             className={styles.remove}
-            onClick={() => removeTodo(todo.id)}
+            onClick={() => handleRemoveTodo(todo.id)}
           >
             <span className="material-symbols-outlined">delete</span>
           </button>

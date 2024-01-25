@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 function TodoContainer({
   displayTodoList,
-  removeTodo,
+  handleRemoveTodo,
   isLoading,
   todoList,
   tableName,
@@ -138,7 +138,7 @@ function TodoContainer({
           </h1>
           <TodoList
             todoList={todoList}
-            removeTodo={removeTodo}
+            handleRemoveTodo={handleRemoveTodo}
             displayTodoList={displayTodoList}
             sortChecked={sortChecked}
           />

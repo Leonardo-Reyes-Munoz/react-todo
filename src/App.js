@@ -12,7 +12,7 @@ function App() {
     setTodoList((prevTodos) => [...prevTodos, newTodo]);
   }
 
-  function removeTodo(id) {
+  function handleRemoveTodo(id) {
     const filteredTodoList = todoList.filter((item) => {
       return item.id !== id;
     });
@@ -44,7 +44,11 @@ function App() {
               {isLoading ? (
                 <p>Loading...</p>
               ) : (
-                <TodoContainer todoList={todoList} onRemoveTodo={removeTodo} />
+                <TodoContainer
+                  todoList={todoList}
+                  handleRemoveTodo={handleRemoveTodo}
+                  displayTodoList={displayTodoList}
+                />
               )}
             </>
           }

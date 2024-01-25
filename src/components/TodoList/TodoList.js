@@ -2,11 +2,15 @@ import React from 'react';
 import TodoListItem from '../TodoListItem/TodoListItem';
 import PropTypes from 'prop-types';
 
-function TodoList({ todoList, removeTodo, sortChecked }) {
+function TodoList({ todoList, handleRemoveTodo, sortChecked }) {
   return (
     <ul>
       {todoList.map((todo) => (
-        <TodoListItem key={todo.id} todo={todo} onRemoveTodo={onRemoveTodo} />
+        <TodoListItem
+          key={todo.id}
+          todo={todo}
+          handleRemoveTodo={handleRemoveTodo}
+        />
       ))}
     </ul>
   );
