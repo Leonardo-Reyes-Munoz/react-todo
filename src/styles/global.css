@@ -35,7 +35,6 @@
 
 body {
   margin: 0;
-  background-color: var(--light-background);
   height: 100vh;
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
