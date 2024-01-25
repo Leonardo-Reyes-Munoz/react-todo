@@ -26,9 +26,6 @@ const TodoListItem = ({ todo, handleRemoveTodo, index, sortChecked }) => {
           <button type="button" className={styles.edit}>
             <span className="material-symbols-outlined">edit</span>
           </button>
-          <button type="button" className={styles.edit}>
-            <span className="material-symbols-outlined">edit</span>
-          </button>
           <button
             type="button"
             className={styles.remove}
@@ -46,7 +43,7 @@ const TodoListItem = ({ todo, handleRemoveTodo, index, sortChecked }) => {
 
 TodoListItem.propTypes = {
   todo: PropTypes.object,
-  removeTodo: PropTypes.func.isRequired,
+  handleRemoveTodo: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
   sortChecked: PropTypes.func.isRequired,
 };

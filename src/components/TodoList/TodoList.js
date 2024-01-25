@@ -10,6 +10,8 @@ function TodoList({ todoList, handleRemoveTodo, sortChecked }) {
           key={todo.id}
           todo={todo}
           handleRemoveTodo={handleRemoveTodo}
+          sortChecked={sortChecked}
+          index={todoList.indexOf(todo)}
         />
       ))}
     </ul>
@@ -18,7 +20,7 @@ function TodoList({ todoList, handleRemoveTodo, sortChecked }) {
 
 TodoList.propTypes = {
   todoList: PropTypes.array,
-  removeTodo: PropTypes.func.isRequired,
+  handleRemoveTodo: PropTypes.func.isRequired,
   sortChecked: PropTypes.func.isRequired,
 };
 

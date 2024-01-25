@@ -6,13 +6,13 @@ import PropTypes from 'prop-types';
 function TodoContainer({
   displayTodoList,
   handleRemoveTodo,
-  isLoading,
   todoList,
   tableName,
+  isLoading,
 }) {
   const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/`;
 
-  const fetchData = React.useCallback(async () => {
+  const fetchData = async () => {
     const options = {
       method: 'GET',
       headers: {
@@ -49,7 +49,7 @@ function TodoContainer({
     } catch (error) {
       console.log(error.message);
     }
-  }, [url, displayTodoList]);
+  };
 
   React.useEffect(() => {
     fetchData();
@@ -125,7 +125,7 @@ function TodoContainer({
   }
 
   return (
-    <React.Fragment>
+    <>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
@@ -144,13 +144,13 @@ function TodoContainer({
           />
         </div>
       )}
-    </React.Fragment>
+    </>
   );
 }
 
 TodoContainer.propTypes = {
   displayTodoList: PropTypes.func.isRequired,
-  removeTodo: PropTypes.func.isRequired,
+  handleRemoveTodo: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
   todoList: PropTypes.array,
   tableName: PropTypes.string,

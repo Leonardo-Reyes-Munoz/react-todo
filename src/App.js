@@ -41,15 +41,14 @@ function App() {
               <h1 className="page-title">Weekly Tasks</h1>
 
               <AddTodoForm addTodo={addTodo} />
-              {isLoading ? (
-                <p>Loading...</p>
-              ) : (
-                <TodoContainer
-                  todoList={todoList}
-                  handleRemoveTodo={handleRemoveTodo}
-                  displayTodoList={displayTodoList}
-                />
-              )}
+
+              <TodoContainer
+                todoList={todoList}
+                handleRemoveTodo={handleRemoveTodo}
+                displayTodoList={displayTodoList}
+                isLoading={isLoading}
+                tableName="Today"
+              />
             </>
           }
         />
