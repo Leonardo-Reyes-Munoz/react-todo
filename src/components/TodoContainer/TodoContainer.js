@@ -53,7 +53,7 @@ function TodoContainer({
 
   React.useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, []);
 
   const [sort, setSort] = React.useState(false);
 
