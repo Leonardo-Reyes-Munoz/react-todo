@@ -2,14 +2,33 @@ import React from 'react';
 import TodoList from '../TodoList/TodoList';
 import styles from './TodoContainer.module.css';
 import PropTypes from 'prop-types';
+import AddTodoForm from '../AddTodoForm/AddTodoForm';
 
-function TodoContainer({
-  displayTodoList,
-  handleRemoveTodo,
-  todoList,
-  tableName,
-  isLoading,
-}) {
+function TodoContainer({ tableName }) {
+  const [todoList, setTodoList] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  function addTodo(newTodo) {
+    setTodoList((prevTodos) => [...prevTodos, newTodo]);
+  }
+
+  function handleRemoveTodo(id) {
+    const filteredTodoList = todoList.filter((item) => {
+      return item.id !== id;
+    });
+    setTodoList(filteredTodoList);
+  }
+
+  function displayTodoList(todos) {
+    setTodoList(todos);
+    setIsLoading(false);
+  }
+
+  React.useEffect(() => {
+    if (!isLoading) {
+      localStorage.setItem('savedTodoList', JSON.stringify(todoList));
+    }
+  }, [todoList, isLoading]);
   const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/`;
 
   const fetchData = async () => {
@@ -126,6 +145,10 @@ function TodoContainer({
 
   return (
     <>
+      <h1 className="page-title">Weekly Tasks</h1>
+
+      <AddTodoForm addTodo={addTodo} />
+
       {isLoading ? (
         <p>Loading...</p>
       ) : (
@@ -136,6 +159,7 @@ function TodoContainer({
               <span className="material-symbols-outlined">swap_vert</span>
             </button>
           </h1>
+
           <TodoList
             todoList={todoList}
             handleRemoveTodo={handleRemoveTodo}
