@@ -9,6 +9,7 @@ function App() {
       <Routes>
         <Route
           path="/"
+          exact
           element={
             <>
               <Navbar />

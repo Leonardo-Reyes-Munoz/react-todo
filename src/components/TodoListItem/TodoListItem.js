@@ -2,11 +2,10 @@ import React from 'react';
 import styles from './TodoListItem.module.css';
 import PropTypes from 'prop-types';
 
-const TodoListItem = ({ todo, handleRemoveTodo, index, sortChecked }) => {
-  const [isChecked, setIsChecked] = React.useState(false);
+const TodoListItem = ({ todo, handleRemoveTodo }) => {
+  const [isChecked, setIsChecked] = React.useState(null);
 
-  function handleChecked(index, isChecked) {
-    sortChecked(index, isChecked);
+  function handleChecked(isChecked) {
     setIsChecked(!isChecked);
   }
 
@@ -17,8 +16,10 @@ const TodoListItem = ({ todo, handleRemoveTodo, index, sortChecked }) => {
           <input
             id={todo.id}
             type="checkbox"
-            checked={isChecked}
-            onChange={() => handleChecked(index, isChecked)}
+            // isChecked initial value of null with ternary operator
+            // allows for updating todo-list in browser without doing a GET request after PATCH request.
+            checked={isChecked ? isChecked : todo.checked}
+            onChange={() => handleChecked(isChecked)}
           />
           <label htmlFor={todo.id}>{todo.title}</label>
         </div>
@@ -44,8 +45,6 @@ const TodoListItem = ({ todo, handleRemoveTodo, index, sortChecked }) => {
 TodoListItem.propTypes = {
   todo: PropTypes.object,
   handleRemoveTodo: PropTypes.func.isRequired,
-  index: PropTypes.number.isRequired,
-  sortChecked: PropTypes.func.isRequired,
 };
 
 export default TodoListItem;

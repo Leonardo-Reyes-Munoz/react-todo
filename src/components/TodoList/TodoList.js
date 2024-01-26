@@ -2,7 +2,7 @@ import React from 'react';
 import TodoListItem from '../TodoListItem/TodoListItem';
 import PropTypes from 'prop-types';
 
-function TodoList({ todoList, handleRemoveTodo, sortChecked }) {
+function TodoList({ todoList, handleRemoveTodo }) {
   return (
     <ul>
       {todoList.map((todo) => (
@@ -10,7 +10,6 @@ function TodoList({ todoList, handleRemoveTodo, sortChecked }) {
           key={todo.id}
           todo={todo}
           handleRemoveTodo={handleRemoveTodo}
-          sortChecked={sortChecked}
           index={todoList.indexOf(todo)}
         />
       ))}
@@ -21,7 +20,6 @@ function TodoList({ todoList, handleRemoveTodo, sortChecked }) {
 TodoList.propTypes = {
   todoList: PropTypes.array,
   handleRemoveTodo: PropTypes.func.isRequired,
-  sortChecked: PropTypes.func.isRequired,
 };
 
 export default TodoList;
