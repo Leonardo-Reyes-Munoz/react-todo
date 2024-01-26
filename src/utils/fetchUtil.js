@@ -1,14 +1,26 @@
 import axios from 'axios';
+axios.defaults.baseURL = 'https://api.airtable.com/v0/';
+axios.defaults.headers.common[
+  'Authorization'
+] = `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`;
+axios.defaults.headers.post['Content-Type'] =
+  'application/x-www-form-urlencoded';
 
-const airtableBaseUrl = 'https://api.airtable.com/v0/';
-// Query param to fetch data is displayed on Airtable
+// Query param to fetch data as displayed on Airtable
 const view = '?view=Grid%20view';
 
-// const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/`;
+const getAllTodoItems = async () => {
+  const config = {
+    method: 'get',
+    url: `${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${view}`,
+  };
 
-const fetchUtil = async (config) => {
   try {
     const response = await axios(config);
+
+    if (!response || typeof response !== 'object') {
+      return console.log(`Error: Unable to receive a response from server.`);
+    }
 
     const todos = response.data.records.map((todo) => {
       const newTodo = {
@@ -26,15 +38,42 @@ const fetchUtil = async (config) => {
   }
 };
 
-const getAllTodoItems = async () => {
+const createTodoItem = async (id, title, dueDate) => {
   const config = {
-    method: 'get',
-    url: `${airtableBaseUrl}${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${view}`,
+    method: 'post',
+    url: `${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${view}`,
+    body: { title, dueDate },
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
     },
   };
-  return await fetchUtil(config);
+
+  try {
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
-export { getAllTodoItems };
+const updateTodoItem = async (id, title, dueDate) => {
+  const config = {
+    method: 'patch',
+    url: `${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${view}`,
+    headers: {
+      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
+    },
+    body: { title, dueDate },
+  };
+};
+
+const deleteTodoItem = async (id, title, dueDate) => {
+  const config = {
+    method: 'patch',
+    url: `${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${view}`,
+    headers: {
+      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
+    },
+    body: { title, dueDate },
+  };
+};
+
+export { createTodoItem, getAllTodoItems, updateTodoItem, deleteTodoItem };

@@ -11,7 +11,7 @@ function TodoContainer({ tableName }) {
   const [isLoading, setIsLoading] = React.useState(true);
   const [sort, setSort] = React.useState(false);
 
-  async function displayTodoList() {
+  async function loadTodoList() {
     const todos = await getAllTodoItems();
     console.log('todo list response:', todos);
     setTodoList(todos);
@@ -25,7 +25,7 @@ function TodoContainer({ tableName }) {
   }, [todoList, isLoading]);
 
   React.useEffect(() => {
-    displayTodoList();
+    loadTodoList();
   }, []);
 
   function addTodo(newTodo) {
@@ -61,11 +61,7 @@ function TodoContainer({ tableName }) {
               <span className="material-symbols-outlined">swap_vert</span>
             </button>
           </h1>
-          <TodoList
-            todoList={todoList}
-            handleRemoveTodo={handleRemoveTodo}
-            displayTodoList={displayTodoList}
-          />
+          <TodoList todoList={todoList} handleRemoveTodo={handleRemoveTodo} />
         </div>
       )}
     </>
