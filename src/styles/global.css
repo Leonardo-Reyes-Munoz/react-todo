@@ -39,6 +39,10 @@ body {
   font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
+body.active-modal {
+  overflow-y: hidden;
+}
+
 h1 {
   font-size: 1.5rem;
 }

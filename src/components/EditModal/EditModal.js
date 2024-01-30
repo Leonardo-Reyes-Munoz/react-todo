@@ -1,4 +1,4 @@
-import './EditModal.css';
+import styles from './EditModal.module.css';
 import { updateTodoItem } from '../../utils/fetchUtil';
 
 export default function EditModal({ onClose, todo, loadTodoList }) {
@@ -15,10 +15,10 @@ export default function EditModal({ onClose, todo, loadTodoList }) {
   }
 
   return (
-    <div className="modal">
-      <div className="overlay" onClick={onClose}></div>
-      <div className="modal-content">
-        <h2 className="modal-title">Edit Task</h2>
+    <div className={styles.modal}>
+      <div className={styles.overlay} onClick={onClose}></div>
+      <div className={styles.modalContent}>
+        <h2 className={styles.modalTitle}>Edit Task</h2>
         <form onSubmit={handleEditSubmit}>
           <label htmlFor="newTitle">Task</label>
           <input
@@ -27,15 +27,20 @@ export default function EditModal({ onClose, todo, loadTodoList }) {
             name="newTitle"
             id="newTitle"
           />
-          <button type="submit">Submit Edit</button>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              onClose();
-            }}
-          >
-            Cancel
-          </button>
+          <div className={styles.btnContainer}>
+            <button type="submit" className={styles.submitEdit}>
+              Submit Edit
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                onClose();
+              }}
+              className={styles.cancel}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     </div>

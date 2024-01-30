@@ -1,3 +1,7 @@
+body.activeModal {
+  overflow-y: hidden;
+}
+
 .TodoItem {
   display: flex;
   justify-content: space-between;
