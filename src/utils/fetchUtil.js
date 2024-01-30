@@ -3,8 +3,7 @@ axios.defaults.baseURL = 'https://api.airtable.com/v0/';
 axios.defaults.headers.common[
   'Authorization'
 ] = `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`;
-axios.defaults.headers.post['Content-Type'] =
-  'application/x-www-form-urlencoded';
+// axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 // Query param to fetch data as displayed on Airtable
 const view = '?view=Grid%20view';
@@ -26,7 +25,7 @@ const getAllTodoItems = async () => {
       const newTodo = {
         id: todo.id,
         title: todo.fields.title,
-        checked: todo.fields.check ?? false,
+        isChecked: todo.fields.isChecked ?? false,
         dueDate: todo.fields.due_date ?? null,
       };
       return newTodo;
@@ -34,46 +33,74 @@ const getAllTodoItems = async () => {
 
     return todos;
   } catch (error) {
-    console.log(error.message);
+    return console.log('Failed: Unable to retrieve todo-list:', error.message);
   }
 };
 
-const createTodoItem = async (id, title, dueDate) => {
+const createTodoItem = async (title) => {
   const config = {
     method: 'post',
-    url: `${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${view}`,
-    body: { title, dueDate },
+    url: `${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`,
+    data: {
+      records: [
+        {
+          fields: {
+            title,
+          },
+        },
+      ],
+    },
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
     },
   };
 
   try {
+    await axios(config);
   } catch (error) {
-    console.log(error.message);
+    return console.log('Failed: Unable to create new item:', error.message);
   }
+  console.log('Success: New todo item created');
 };
 
-const updateTodoItem = async (id, title, dueDate) => {
+const updateTodoItem = async (id, title, isChecked, dueDate) => {
   const config = {
     method: 'patch',
-    url: `${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${view}`,
+    url: `${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`,
+    data: {
+      fields: {
+        title,
+        isChecked,
+        dueDate,
+      },
+    },
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
     },
-    body: { title, dueDate },
   };
+  try {
+    await axios(config);
+  } catch (error) {
+    return console.log('Failed: unable to update item:', error.message);
+  }
+  console.log('Success: Task was successfully updated.');
 };
 
-const deleteTodoItem = async (id, title, dueDate) => {
+const deleteTodoItem = async (id) => {
   const config = {
-    method: 'patch',
-    url: `${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${view}`,
+    method: 'delete',
+    url: `${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`,
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
     },
-    body: { title, dueDate },
   };
+
+  try {
+    await axios(config);
+  } catch (error) {
+    return console.log('Failed: unable to delete item:', error.message);
+  }
+  console.log('Success: Todo item has been deleted');
 };
 
 export { createTodoItem, getAllTodoItems, updateTodoItem, deleteTodoItem };

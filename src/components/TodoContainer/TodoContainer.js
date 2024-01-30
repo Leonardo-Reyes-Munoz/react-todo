@@ -3,8 +3,8 @@ import TodoList from '../TodoList/TodoList';
 import styles from './TodoContainer.module.css';
 import PropTypes from 'prop-types';
 import AddTodoForm from '../AddTodoForm/AddTodoForm';
-import { getAllTodoItems } from '../../utils/fetchUtil';
-import { sortByTitle } from '../../utils/sortUtil';
+import { getAllTodoItems, deleteTodoItem } from '../../utils/fetchUtil';
+import { sortByTitle, sortByIsChecked } from '../../utils/sortUtil';
 
 function TodoContainer({ tableName }) {
   const [todoList, setTodoList] = React.useState([]);
@@ -12,9 +12,11 @@ function TodoContainer({ tableName }) {
   const [sort, setSort] = React.useState(false);
 
   async function loadTodoList() {
+    setIsLoading(true);
     const todos = await getAllTodoItems();
     console.log('todo list response:', todos);
-    setTodoList(todos);
+    let sortedList = sortByIsChecked(todos);
+    setTodoList(sortedList);
     setIsLoading(false);
   }
 
@@ -28,11 +30,8 @@ function TodoContainer({ tableName }) {
     loadTodoList();
   }, []);
 
-  function addTodo(newTodo) {
-    setTodoList((prevTodos) => [...prevTodos, newTodo]);
-  }
-
-  function handleRemoveTodo(id) {
+  async function handleRemoveTodo(id) {
+    await deleteTodoItem(id);
     const filteredTodoList = todoList.filter((item) => {
       return item.id !== id;
     });
@@ -40,7 +39,8 @@ function TodoContainer({ tableName }) {
   }
 
   function handleSort() {
-    const sortedList = sortByTitle(todoList, sort);
+    let sortedList = sortByTitle(todoList, sort);
+    sortedList = sortByIsChecked(sortedList);
     setSort(!sort);
     setTodoList(sortedList);
   }
@@ -49,7 +49,7 @@ function TodoContainer({ tableName }) {
     <>
       <h1 className="page-title">Weekly Tasks</h1>
 
-      <AddTodoForm addTodo={addTodo} />
+      <AddTodoForm loadTodoList={loadTodoList} />
 
       {isLoading ? (
         <p>Loading...</p>
@@ -61,7 +61,11 @@ function TodoContainer({ tableName }) {
               <span className="material-symbols-outlined">swap_vert</span>
             </button>
           </h1>
-          <TodoList todoList={todoList} handleRemoveTodo={handleRemoveTodo} />
+          <TodoList
+            todoList={todoList}
+            handleRemoveTodo={handleRemoveTodo}
+            loadTodoList={loadTodoList}
+          />
         </div>
       )}
     </>
