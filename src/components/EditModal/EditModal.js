@@ -19,6 +19,8 @@ export default function EditModal({ onClose, todo, loadTodoList }) {
     loadTodoList();
   }
 
+  console.log(dueDate);
+
   return (
     <div className={styles.modal}>
       <div className={styles.overlay} onClick={onClose}></div>
@@ -36,7 +38,12 @@ export default function EditModal({ onClose, todo, loadTodoList }) {
           </div>
           <div className={styles.inputItem}>
             <label htmlFor="dueDate"> Due: </label>
-            <input type="date" name="dueDate" id="dueDate" />
+            <input
+              type="date"
+              name="dueDate"
+              id="dueDate"
+              defaultValue={dueDate}
+            />
           </div>
           <div className={styles.btnContainer}>
             <button type="submit" className={styles.submitEdit}>

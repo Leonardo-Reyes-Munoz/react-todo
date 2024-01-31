@@ -4,7 +4,6 @@ import EditModal from '../EditModal/EditModal';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { updateTodoItem } from '../../utils/fetchUtil';
-import { formToJSON } from 'axios';
 
 const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
   const [showModal, setShowModal] = useState(false);
@@ -25,8 +24,12 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
   //parse date into a more readable date string
   let inputDate = todo.dueDate;
   let parsedDate = new Date(inputDate);
+  const timeZoneOffset = parsedDate.getTimezoneOffset();
+  const adjustedDate = new Date(
+    parsedDate.getTime() + timeZoneOffset * 60 * 1000
+  );
   let options = { year: 'numeric', month: 'long', day: 'numeric' };
-  let formattedDate = parsedDate.toLocaleDateString('en-US', options);
+  let formattedDate = adjustedDate.toLocaleDateString('en-US', options);
 
   return (
     <>
@@ -72,7 +75,6 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
           </button>
         </div>
       </div>
-      q
       <hr />
     </>
   );
