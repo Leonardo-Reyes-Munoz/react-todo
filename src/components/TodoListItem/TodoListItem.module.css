@@ -17,7 +17,7 @@ body.activeModal {
   border-color: var(--happy-blue);
 }
 
-.remove {
+.edit {
   margin-right: 0.5rem;
 }
 
@@ -35,4 +35,22 @@ hr {
   background-color: rgba(158, 154, 154, 0.43);
   height: 1px;
   border: none;
+}
+
+.date {
+  font-size: 0.75rem;
+  color: var(--action-blue);
+}
+
+input[type='checkbox' i]:checked + label {
+  text-decoration: line-through;
+  color: var(--relaxed-gray);
+}
+
+input[type='checkbox' i]:checked + label + .date {
+  color: var(--relaxed-gray);
+}
+
+.btnContainer {
+  flex-shrink: 0;
 }

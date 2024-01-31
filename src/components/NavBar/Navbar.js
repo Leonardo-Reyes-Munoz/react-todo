@@ -4,10 +4,11 @@ export default function Navbar() {
   return (
     <nav className={styles.nav}>
       <a href="/" className={styles.SiteTitle}>
-        Task-Tackler <span className="material-symbols-outlined">task_alt</span>
+        Task-Tackler{' '}
+        <span className="material-symbols-outlined task-logo">task_alt</span>
       </a>
       <ul>
-        <li>
+        {/* <li>
           <a href="/shared">
             <span className="material-symbols-outlined">groups</span>
           </a>
@@ -16,7 +17,7 @@ export default function Navbar() {
           <a href="/calendar">
             <span className="material-symbols-outlined">calendar_month</span>
           </a>
-        </li>
+        </li> */}
         <li>
           <a href="/logout">
             <span className="material-symbols-outlined">logout</span>

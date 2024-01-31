@@ -8,8 +8,13 @@ export default function EditModal({ onClose, todo, loadTodoList }) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const formProps = Object.fromEntries(formData);
+    console.log(formProps);
     const newTitle = formProps.newTitle;
-    await updateTodoItem(id, newTitle);
+    const updatedDueDate = formProps.dueDate === '' ? null : formProps.dueDate;
+
+    console.log('Due Date:', updatedDueDate);
+
+    await updateTodoItem(id, newTitle, updatedDueDate);
     onClose();
     loadTodoList();
   }
@@ -20,13 +25,19 @@ export default function EditModal({ onClose, todo, loadTodoList }) {
       <div className={styles.modalContent}>
         <h2 className={styles.modalTitle}>Edit Task</h2>
         <form onSubmit={handleEditSubmit}>
-          <label htmlFor="newTitle">Task</label>
-          <input
-            type="text"
-            defaultValue={title}
-            name="newTitle"
-            id="newTitle"
-          />
+          <div className={styles.inputItem}>
+            <label htmlFor="newTitle">Task</label>
+            <input
+              type="text"
+              defaultValue={title}
+              name="newTitle"
+              id="newTitle"
+            />
+          </div>
+          <div className={styles.inputItem}>
+            <label htmlFor="dueDate"> Due: </label>
+            <input type="date" name="dueDate" id="dueDate" />
+          </div>
           <div className={styles.btnContainer}>
             <button type="submit" className={styles.submitEdit}>
               Submit Edit

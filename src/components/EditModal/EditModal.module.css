@@ -35,15 +35,14 @@
 
 .submitEdit {
   background-color: whitesmoke;
-  color: var(--happy-orange);
-  border-color: var(--happy-orange);
-  margin-right: 1rem;
+  color: var(--relaxed-orange);
+  border-color: var(--relaxed-orange);
 }
 
 .submitEdit:hover {
-  background-color: var(--happy-orange);
+  background-color: var(--relaxed-orange);
   color: whitesmoke;
-  border-color: var(--happy-orange);
+  border-color: var(--relaxed-orange);
   transition: 0.25s;
 }
 
@@ -51,6 +50,7 @@
   background-color: var(--off-white);
   color: var(--action-blue);
   border-color: var(--action-blue);
+  margin-left: 1rem;
 }
 
 .cancel:hover {
@@ -60,4 +60,12 @@
 
 .btnContainer {
   margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.inputItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

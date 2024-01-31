@@ -16,6 +16,7 @@ const getAllTodoItems = async () => {
 
   try {
     const response = await axios(config);
+    console.log('Initial data:', response.data.records);
 
     if (!response || typeof response !== 'object') {
       return console.log(`Error: Unable to receive a response from server.`);
@@ -26,7 +27,7 @@ const getAllTodoItems = async () => {
         id: todo.id,
         title: todo.fields.title,
         isChecked: todo.fields.isChecked ?? false,
-        dueDate: todo.fields.due_date ?? null,
+        dueDate: todo.fields.dueDate ?? null,
       };
       return newTodo;
     });
@@ -63,14 +64,13 @@ const createTodoItem = async (title) => {
   console.log('Success: New todo item created');
 };
 
-const updateTodoItem = async (id, title, isChecked, dueDate) => {
+const updateTodoItem = async (id, title, dueDate = '') => {
   const config = {
     method: 'patch',
     url: `${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`,
     data: {
       fields: {
         title,
-        isChecked,
         dueDate,
       },
     },

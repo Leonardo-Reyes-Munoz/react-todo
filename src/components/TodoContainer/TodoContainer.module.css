@@ -1,14 +1,10 @@
 .TodoContainer {
   background-color: var(--off-white);
   border-radius: 1rem;
-  max-width: 25rem;
+  max-width: 90%;
   margin: auto;
   padding-top: 0;
   box-shadow: 5px 5px 5px var(--relaxed-gray);
-}
-
-input[type='checkbox' i]:checked + label {
-  text-decoration: line-through;
 }
 
 ul {
@@ -17,85 +13,7 @@ ul {
 }
 
 .title {
-  color: white;
-  background-color: var(--happy-yellow);
-  font-size: 1.5rem;
-  text-align: center;
-  padding: 1rem;
-  margin-bottom: 0;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-}
-
-/* MOBILE FORMATTING */
-@media screen and (max-width: 430px) {
-  .TodoList {
-    max-width: 90%;
-  }
-
-  input[type='text' i] {
-    width: 50%;
-  }
-}
-.TodoContainer {
-  background-color: var(--off-white);
-  border-radius: 1rem;
-  max-width: 25rem;
-  margin: auto;
-  padding-top: 0;
-  box-shadow: 5px 5px 5px var(--relaxed-gray);
-}
-
-input[type='checkbox' i]:checked + label {
-  text-decoration: line-through;
-}
-
-ul {
-  list-style: none;
-  padding: 0 1rem 1rem 1rem;
-}
-
-.title {
-  color: white;
-  background-color: var(--happy-yellow);
-  font-size: 1.5rem;
-  text-align: center;
-  padding: 1rem;
-  margin-bottom: 0;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-}
-
-/* MOBILE FORMATTING */
-@media screen and (max-width: 430px) {
-  .TodoList {
-    max-width: 90%;
-  }
-
-  input[type='text' i] {
-    width: 50%;
-  }
-}
-.TodoContainer {
-  background-color: var(--off-white);
-  border-radius: 1rem;
-  max-width: 25rem;
-  margin: auto;
-  padding-top: 0;
-  box-shadow: 5px 5px 5px var(--relaxed-gray);
-}
-
-input[type='checkbox' i]:checked + label {
-  text-decoration: line-through;
-}
-
-ul {
-  list-style: none;
-  padding: 0 1rem 1rem 1rem;
-}
-
-.title {
-  color: white;
+  color: #2e2e2e;
   background-color: var(--happy-yellow);
   font-size: 1.5rem;
   text-align: center;
@@ -107,7 +25,7 @@ ul {
 
 .sort {
   background-color: var(--happy-yellow);
-  color: white;
+  color: #2e2e2e;
   border-style: none;
   vertical-align: middle;
   margin-left: 2rem;
@@ -117,25 +35,13 @@ ul {
   color: var(--action-blue);
 }
 
-/* MOBILE FORMATTING */
-@media screen and (max-width: 430px) {
-  .TodoList {
-    max-width: 90%;
-  }
-
-  input[type='text' i] {
-    width: 50%;
-  }
+input[type='text' i] {
+  width: 50%;
 }
 
-.sort {
-  background-color: var(--happy-yellow);
-  color: white;
-  border-style: none;
-  vertical-align: middle;
-  margin-left: 2rem;
-}
-
-.sort:hover {
-  color: var(--action-blue);
+/* TABLET FORMATTING*/
+@media only screen and (min-width: 435px) {
+  .TodoContainer {
+    max-width: 27rem;
+  }
 }

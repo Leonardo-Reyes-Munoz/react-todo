@@ -1,6 +1,6 @@
 .nav {
   background-color: var(--relaxed-orange);
-  color: white;
+  color: #2e2e2e;
   display: flex;
   justify-content: space-between;
   align-items: center;

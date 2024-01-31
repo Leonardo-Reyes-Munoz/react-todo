@@ -14,20 +14,20 @@
   --dark-gray: #706d61;
 
   /* relaxed color palette */
-  --relaxed-orange: #ffae59;
+  --relaxed-orange: #ff8e2b;
   --relaxed-yellow: #e8bb75;
   --relaxed-brown: #c4b191;
-  --relaxed-gray: #999387;
+  --relaxed-gray: #5b5851;
   --relaxed-purple: #7d7278;
 
   /* Action color palette */
   --action-blue: #2185d0;
-  --action-green: #21ba45;
+  --action-green: #15812f;
   --action-red: #db2828;
 
   /* Happy Color Palette */
   --happy-pink: #f06a8a;
-  --happy-blue: #8fdbbf;
+  --happy-blue: #4e7868;
   --happy-yellow: #fae360;
   --happy-white: #f0f1df;
   --happy-orange: #f48e35;
@@ -63,16 +63,6 @@ button {
   text-align: center;
 }
 
-/* TABLET FORMATTING */
-@media screen and (max-width: 820px) {
-  h1 {
-    font-size: 1rem;
-  }
-}
-
-/* MOBILE FORMATTING */
-@media screen and (max-width: 430px) {
-  h1 {
-    font-size: 1rem;
-  }
+.task-logo {
+  color: var(--action-green);
 }
