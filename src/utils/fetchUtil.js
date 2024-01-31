@@ -64,13 +64,14 @@ const createTodoItem = async (title) => {
   console.log('Success: New todo item created');
 };
 
-const updateTodoItem = async (id, title, dueDate = '') => {
+const updateTodoItem = async (id, title, isChecked, dueDate) => {
   const config = {
     method: 'patch',
     url: `${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`,
     data: {
       fields: {
         title,
+        isChecked,
         dueDate,
       },
     },

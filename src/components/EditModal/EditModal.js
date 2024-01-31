@@ -2,7 +2,7 @@ import styles from './EditModal.module.css';
 import { updateTodoItem } from '../../utils/fetchUtil';
 
 export default function EditModal({ onClose, todo, loadTodoList }) {
-  const { title, id, dueDate } = todo;
+  const { title, id, dueDate, isChecked } = todo;
 
   async function handleEditSubmit(e) {
     e.preventDefault();
@@ -14,7 +14,7 @@ export default function EditModal({ onClose, todo, loadTodoList }) {
 
     console.log('Due Date:', updatedDueDate);
 
-    await updateTodoItem(id, newTitle, updatedDueDate);
+    await updateTodoItem(id, newTitle, isChecked, updatedDueDate);
     onClose();
     loadTodoList();
   }
