@@ -15,7 +15,7 @@ function TodoContainer({ tableName }) {
     setIsLoading(true);
     const todos = await getAllTodoItems();
     console.log('todo list response:', todos);
-    let sortedList = sortByIsChecked(todos);
+    const sortedList = sortByIsChecked(todos);
     setTodoList(sortedList);
     setIsLoading(false);
   }

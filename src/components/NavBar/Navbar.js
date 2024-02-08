@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <nav className={styles.nav}>
       <a href="/" className={styles.SiteTitle}>
-        Task-Tackler{' '}
+        Task-Tackler
         <span className="material-symbols-outlined task-logo">task_alt</span>
       </a>
       <ul>
