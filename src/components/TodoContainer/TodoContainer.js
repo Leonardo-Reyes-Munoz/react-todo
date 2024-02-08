@@ -20,11 +20,6 @@ function TodoContainer({ tableName }) {
     setIsLoading(false);
   }
 
-  React.useEffect(() => {
-    if (!isLoading) {
-      localStorage.setItem('savedTodoList', JSON.stringify(todoList));
-    }
-  }, [todoList, isLoading]);
 
   React.useEffect(() => {
     loadTodoList();
