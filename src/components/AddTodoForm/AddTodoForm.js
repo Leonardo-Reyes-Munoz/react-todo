@@ -2,8 +2,9 @@ import React from 'react';
 import InputWithLabel from '../InputWithLabel/InputWithLabel';
 import styles from './AddTodoForm.module.css';
 import PropTypes from 'prop-types';
+import { createTodoItem } from '../../utils/fetchUtil';
 
-export default function AddTodoForm({ addTodo }) {
+export default function AddTodoForm({ loadTodoList }) {
   const [todoTitle, setTodoTitle] = React.useState('');
 
   function handleTitleChange(event) {
@@ -11,10 +12,11 @@ export default function AddTodoForm({ addTodo }) {
     setTodoTitle(newTodoTitle);
   }
 
-  function handleAddTodo(event) {
+  async function handleAddTodo(event) {
     event.preventDefault();
-    addTodo({ title: todoTitle, id: Date.now() });
+    await createTodoItem(todoTitle);
     setTodoTitle('');
+    loadTodoList();
   }
 
   return (

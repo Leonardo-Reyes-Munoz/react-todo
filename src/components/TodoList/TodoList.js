@@ -1,10 +1,22 @@
 import React from 'react';
 import TodoListItem from '../TodoListItem/TodoListItem';
-import styles from './TodoList.module.css';
 import PropTypes from 'prop-types';
 
-function TodoList({ todoList, onRemoveTodo }) {
+function TodoList({ todoList, handleRemoveTodo, loadTodoList }) {
   return (
+<<<<<<< HEAD
+    <ul>
+      {todoList.map((todo) => (
+        <TodoListItem
+          key={todo.id}
+          todo={todo}
+          handleRemoveTodo={handleRemoveTodo}
+          index={todoList.indexOf(todo)}
+          loadTodoList={loadTodoList}
+        />
+      ))}
+    </ul>
+=======
     <div className={styles.TodoList}>
       <h3 className={styles.title}>Monday</h3>
       <ul>
@@ -13,12 +25,13 @@ function TodoList({ todoList, onRemoveTodo }) {
         ))}
       </ul>
     </div>
+>>>>>>> main
   );
 }
 
 TodoList.propTypes = {
   todoList: PropTypes.array,
-  onRemoveTodo: PropTypes.func.isRequired,
+  handleRemoveTodo: PropTypes.func.isRequired,
 };
 
 export default TodoList;

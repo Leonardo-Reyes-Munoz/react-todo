@@ -1,0 +1,71 @@
+.modal,
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay {
+  background: rgba(49, 49, 49, 0.8);
+}
+
+.modalContent {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: var(--off-white);
+  padding: 14px 28px;
+  border-radius: 1rem;
+  max-width: 600px;
+  min-width: 300px;
+  font-family: inherit;
+}
+
+.modalTitle {
+  text-align: center;
+  font-family: inherit;
+  color: var(--relaxed-gray);
+}
+
+.submitEdit {
+  background-color: whitesmoke;
+  color: var(--relaxed-orange);
+  border-color: var(--relaxed-orange);
+}
+
+.submitEdit:hover {
+  background-color: var(--relaxed-orange);
+  color: whitesmoke;
+  border-color: var(--relaxed-orange);
+  transition: 0.25s;
+}
+
+.cancel {
+  background-color: var(--off-white);
+  color: var(--action-blue);
+  border-color: var(--action-blue);
+  margin-left: 1rem;
+}
+
+.cancel:hover {
+  color: var(--action-red);
+  border-color: var(--action-red);
+}
+
+.btnContainer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.inputItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
