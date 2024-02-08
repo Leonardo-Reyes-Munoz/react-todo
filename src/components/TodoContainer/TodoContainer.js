@@ -23,7 +23,7 @@ function TodoContainer({ tableName }) {
 
   React.useEffect(() => {
     loadTodoList();
-  }, []);
+  }, [tableName]);
 
   async function handleRemoveTodo(id) {
     await deleteTodoItem(id);
