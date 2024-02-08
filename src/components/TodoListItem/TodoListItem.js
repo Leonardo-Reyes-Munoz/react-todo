@@ -48,6 +48,7 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
           <label htmlFor={todo.id}>{todo.title}</label>
           {todo.dueDate && <p className={styles.date}>Due: {formattedDate}</p>}
         </div>
+<<<<<<< HEAD
         <div className={styles.btnContainer}>
           <button
             type="button"
@@ -70,6 +71,16 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
             type="button"
             className={styles.remove}
             onClick={() => handleRemoveTodo(todo.id)}
+=======
+        <div>
+          <button type="button" className={styles.edit}>
+            <span className="material-symbols-outlined">edit</span>
+          </button>
+          <button
+            type="button"
+            className={styles.remove}
+            onClick={() => onRemoveTodo(todo.id)}
+>>>>>>> main
           >
             <span className="material-symbols-outlined">delete</span>
           </button>

@@ -16,7 +16,11 @@ function App() {
             </>
           }
         />
+<<<<<<< HEAD
         <Route path="/sharedTodoList" element={<h1>New Todo List</h1>} />
+=======
+        <Route path="/newTodoList" element={<h1>New Todo List</h1>} />
+>>>>>>> main
       </Routes>
     </BrowserRouter>
   );
