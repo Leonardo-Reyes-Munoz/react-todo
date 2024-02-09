@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 function TodoList({ todoList, handleRemoveTodo, loadTodoList }) {
   return (
-<<<<<<< HEAD
     <ul>
       {todoList.map((todo) => (
         <TodoListItem
@@ -16,16 +15,6 @@ function TodoList({ todoList, handleRemoveTodo, loadTodoList }) {
         />
       ))}
     </ul>
-=======
-    <div className={styles.TodoList}>
-      <h3 className={styles.title}>Monday</h3>
-      <ul>
-        {todoList.map((todo) => (
-          <TodoListItem key={todo.id} todo={todo} onRemoveTodo={onRemoveTodo} />
-        ))}
-      </ul>
-    </div>
->>>>>>> main
   );
 }
 

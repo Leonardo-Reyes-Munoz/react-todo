@@ -23,7 +23,6 @@ ul {
   border-top-right-radius: 1rem;
 }
 
-<<<<<<< HEAD:src/components/TodoContainer/TodoContainer.module.css
 .sort {
   background-color: var(--happy-yellow);
   color: #2e2e2e;
@@ -44,15 +43,5 @@ input[type='text' i] {
 @media only screen and (min-width: 435px) {
   .TodoContainer {
     max-width: 27rem;
-=======
-/* MOBILE FORMATTING */
-@media screen and (max-width: 430px) {
-  .TodoList {
-    max-width: 90%;
-  }
-
-  input[type='text' i] {
-    width: 50%;
->>>>>>> main:src/components/TodoList/TodoList.module.css
   }
 }

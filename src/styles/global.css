@@ -63,21 +63,6 @@ button {
   text-align: center;
 }
 
-<<<<<<< HEAD
 .task-logo {
   color: var(--action-green);
-=======
-/* TABLET FORMATTING */
-@media screen and (max-width: 820px) {
-  h1 {
-    font-size: 1rem;
-  }
-}
-
-/* MOBILE FORMATTING */
-@media screen and (max-width: 430px) {
-  h1 {
-    font-size: 1rem;
-  }
->>>>>>> main
 }
