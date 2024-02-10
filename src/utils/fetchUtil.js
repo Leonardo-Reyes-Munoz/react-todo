@@ -16,7 +16,7 @@ const getAllTodoItems = async () => {
 
   try {
     const response = await axios(config);
-    console.log('Initial data:', response.data.records);
+    // console.log('Initial data:', response.data.records);
 
     if (!response || typeof response !== 'object') {
       return console.log(`Error: Unable to receive a response from server.`);
@@ -126,8 +126,6 @@ const loginUser = async (user) => {
     url: 'http://localhost:3000/api/v1/sessions/logon',
     data: { ...user },
   };
-
-  console.log(config);
 
   try {
     const response = await axios(config);

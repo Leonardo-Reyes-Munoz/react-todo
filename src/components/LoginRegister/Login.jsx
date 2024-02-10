@@ -1,20 +1,28 @@
 import { loginUser } from '../../utils/fetchUtil';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm({ handleSetLoginForm }) {
   const formRef = React.useRef(null);
+  let navigate = useNavigate();
 
   async function handleLoginSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const formProps = Object.fromEntries(formData);
-    console.log(formProps);
     const response = await loginUser(formProps);
     formRef.current.reset();
 
     if (response && response.status === 200) {
-      handleSetLoginForm();
+      const token = response.data.token;
+      const name = response.data.user.name;
+      localStorage.setItem('jwtToken', token);
+      localStorage.setItem('userName', name);
+      navigate('/dashboard');
+    } else {
+      console.log('Unauthorized user Toast Message. Please try again.');
     }
+    return;
   }
   return (
     <div className="login-register">
