@@ -32,8 +32,8 @@
   vertical-align: sub;
 }
 
-.logout-btn {
+.nav > ul > li > button {
+  background-color: var(--relaxed-orange);
   border-style: none;
-  background-color: orange;
-  color: red;
+  color: #2e2e2e;
 }
