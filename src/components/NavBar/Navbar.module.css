@@ -31,3 +31,9 @@
   font-size: 3rem;
   vertical-align: sub;
 }
+
+.logout-btn {
+  border-style: none;
+  background-color: orange;
+  color: red;
+}
