@@ -120,10 +120,29 @@ const registerUser = async (user) => {
   }
 };
 
+const loginUser = async (user) => {
+  const config = {
+    method: 'post',
+    url: 'http://localhost:3000/api/v1/sessions/logon',
+    data: { ...user },
+  };
+
+  console.log(config);
+
+  try {
+    const response = await axios(config);
+    console.log('You have successfully logged-in!');
+    return response;
+  } catch (error) {
+    return console.log('Failed: ', error.response.data.msg);
+  }
+};
+
 export {
   createTodoItem,
   getAllTodoItems,
   updateTodoItem,
   deleteTodoItem,
   registerUser,
+  loginUser,
 };

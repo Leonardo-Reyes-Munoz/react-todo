@@ -2,6 +2,8 @@ import { registerUser } from '../../utils/fetchUtil';
 import React from 'react';
 
 function RegisterForm({ handleSetRegisterForm }) {
+  const formRef = React.useRef(null);
+
   async function handleRegisterSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -13,8 +15,6 @@ function RegisterForm({ handleSetRegisterForm }) {
       handleSetRegisterForm();
     }
   }
-
-  const formRef = React.useRef(null);
 
   return (
     <div className="login-register">
