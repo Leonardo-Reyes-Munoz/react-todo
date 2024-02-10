@@ -14,12 +14,11 @@ function TodoContainer({ tableName }) {
   async function loadTodoList() {
     setIsLoading(true);
     const todos = await getAllTodoItems();
-    console.log('todo list response:', todos);
+    // console.log('todo list response:', todos);
     const sortedList = sortByIsChecked(todos);
     setTodoList(sortedList);
     setIsLoading(false);
   }
-
 
   React.useEffect(() => {
     loadTodoList();

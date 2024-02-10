@@ -31,3 +31,9 @@
   font-size: 3rem;
   vertical-align: sub;
 }
+
+.nav > ul > li > button {
+  background-color: var(--relaxed-orange);
+  border-style: none;
+  color: #2e2e2e;
+}
