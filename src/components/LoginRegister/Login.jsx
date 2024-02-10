@@ -5,15 +5,33 @@ function LoginForm({ handleSetLoginForm }) {
       <form>
         <div className="inputItem">
           <label htmlFor="email">Email:</label>
-          <input type="email" id="name" name="email" />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            autoComplete="email"
+          />
         </div>
         <div className="inputItem">
           <label htmlFor="password">Password:</label>
-          <input type="password" id="password" />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            required
+            autoComplete="current-password"
+          />
         </div>
         <div className="action">
-          <button className="login">Login</button>
-          <button className="cancel" onClick={() => handleSetLoginForm()}>
+          <button type="submit" className="login">
+            Login
+          </button>
+          <button
+            type="button"
+            className="cancel"
+            onClick={() => handleSetLoginForm()}
+          >
             Cancel
           </button>
         </div>

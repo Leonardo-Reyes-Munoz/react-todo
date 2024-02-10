@@ -104,4 +104,26 @@ const deleteTodoItem = async (id) => {
   console.log('Success: Todo item has been deleted');
 };
 
-export { createTodoItem, getAllTodoItems, updateTodoItem, deleteTodoItem };
+const registerUser = async (user) => {
+  const config = {
+    method: 'post',
+    url: 'http://localhost:3000/api/v1/sessions/register',
+    data: { ...user },
+  };
+
+  try {
+    const response = await axios(config);
+    console.log('You have successfully registered! Please log-in');
+    return response;
+  } catch (error) {
+    return console.log('Failed: ', error.response.data.msg);
+  }
+};
+
+export {
+  createTodoItem,
+  getAllTodoItems,
+  updateTodoItem,
+  deleteTodoItem,
+  registerUser,
+};

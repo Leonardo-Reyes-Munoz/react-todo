@@ -1,23 +1,64 @@
+import { registerUser } from '../../utils/fetchUtil';
+import React from 'react';
+
 function RegisterForm({ handleSetRegisterForm }) {
+  async function handleRegisterSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const formProps = Object.fromEntries(formData);
+    formRef.current.reset();
+    const response = await registerUser(formProps);
+
+    if (response && response.status === 201) {
+      handleSetRegisterForm();
+    }
+  }
+
+  const formRef = React.useRef(null);
+
   return (
     <div className="login-register">
       <h3>Please register:</h3>
-      <form>
+      <form ref={formRef} onSubmit={handleRegisterSubmit}>
         <div className="inputItem">
           <label htmlFor="name">Name:</label>
-          <input type="text" id="name" name="name" />
+          <input
+            type="text"
+            name="name"
+            id="name"
+            required
+            autoComplete="name"
+          />
         </div>
         <div className="inputItem">
           <label htmlFor="email">Email:</label>
-          <input type="email" id="name" name="email" />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            autoComplete="email"
+          />
         </div>
         <div className="inputItem">
           <label htmlFor="password">Password:</label>
-          <input type="password" id="password" />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            required
+            autoComplete="current-password"
+          />
         </div>
         <div className="action">
-          <button className="register-form">Register</button>
-          <button className="cancel" onClick={() => handleSetRegisterForm()}>
+          <button type="submit" className="register-form">
+            Register
+          </button>
+          <button
+            type="button"
+            className="cancel"
+            onClick={() => handleSetRegisterForm()}
+          >
             Cancel
           </button>
         </div>
