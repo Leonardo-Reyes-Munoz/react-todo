@@ -104,10 +104,13 @@ const deleteTodoItem = async (id) => {
   console.log('Success: Todo item has been deleted');
 };
 
+// User Registration and Login HTTP Requests
+
 const registerUser = async (user) => {
   const config = {
     method: 'post',
-    url: 'http://localhost:3000/api/v1/sessions/register',
+    // url: 'http://localhost:3000/api/v1/sessions/register',
+    url: 'https://tasktacklerapi.onrender.com/api/v1/sessions/register',
     data: { ...user },
   };
 
@@ -123,7 +126,8 @@ const registerUser = async (user) => {
 const loginUser = async (user) => {
   const config = {
     method: 'post',
-    url: 'http://localhost:3000/api/v1/sessions/logon',
+    // url: 'http://localhost:3000/api/v1/sessions/logon',
+    url: 'https://tasktacklerapi.onrender.com/api/v1/sessions/logon',
     data: { ...user },
   };
 
