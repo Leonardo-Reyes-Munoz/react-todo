@@ -1,33 +1,36 @@
 import axios from 'axios';
-axios.defaults.baseURL = 'https://api.airtable.com/v0/';
-axios.defaults.headers.common[
-  'Authorization'
-] = `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`;
-// axios.defaults.headers.post['Content-Type'] = 'application/json';
+// testing baseURL
+// const baseURL = 'http://localhost:3000/api/v1';
 
-// Query param to fetch data as displayed on Airtable
-const view = '?view=Grid%20view';
+const baseURL = 'https://tasktacklerapi.onrender.com/api/v1';
+const taskRoute = 'tasks';
+const registerRoute = 'sessions/register';
+const loginRoute = 'sessions/logon';
 
 const getAllTodoItems = async () => {
+  const jwtToken = localStorage.getItem('jwtToken');
   const config = {
     method: 'get',
-    url: `${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${view}`,
+    url: `${baseURL}/${taskRoute}`,
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
+    },
   };
 
   try {
     const response = await axios(config);
-    // console.log('Initial data:', response.data.records);
+    // console.log('Initial data:', response.data.tasks);
 
     if (!response || typeof response !== 'object') {
       return console.log(`Error: Unable to receive a response from server.`);
     }
 
-    const todos = response.data.records.map((todo) => {
+    const todos = response.data.tasks.map((todo) => {
       const newTodo = {
-        id: todo.id,
-        title: todo.fields.title,
-        isChecked: todo.fields.isChecked ?? false,
-        dueDate: todo.fields.dueDate ?? null,
+        id: todo._id,
+        title: todo.title,
+        isCompleted: todo.isCompleted ?? false,
+        dueDate: todo.dueDate ?? null,
       };
       return newTodo;
     });
@@ -39,20 +42,15 @@ const getAllTodoItems = async () => {
 };
 
 const createTodoItem = async (title) => {
+  const jwtToken = localStorage.getItem('jwtToken');
   const config = {
     method: 'post',
-    url: `${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`,
+    url: `${baseURL}/${taskRoute}`,
     data: {
-      records: [
-        {
-          fields: {
-            title,
-          },
-        },
-      ],
+      title,
     },
     headers: {
-      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
+      Authorization: `Bearer ${jwtToken}`,
     },
   };
 
@@ -64,19 +62,18 @@ const createTodoItem = async (title) => {
   console.log('Success: New todo item created');
 };
 
-const updateTodoItem = async (id, title, isChecked, dueDate) => {
+const updateTodoItem = async (id, title, isCompleted, dueDate) => {
+  const jwtToken = localStorage.getItem('jwtToken');
   const config = {
     method: 'patch',
-    url: `${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`,
+    url: `${baseURL}/${taskRoute}/${id}`,
     data: {
-      fields: {
-        title,
-        isChecked,
-        dueDate,
-      },
+      title,
+      isCompleted,
+      dueDate,
     },
     headers: {
-      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
+      Authorization: `Bearer ${jwtToken}`,
     },
   };
   try {
@@ -88,11 +85,12 @@ const updateTodoItem = async (id, title, isChecked, dueDate) => {
 };
 
 const deleteTodoItem = async (id) => {
+  const jwtToken = localStorage.getItem('jwtToken');
   const config = {
     method: 'delete',
-    url: `${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`,
+    url: `${baseURL}/${taskRoute}/${id}`,
     headers: {
-      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
+      Authorization: `Bearer ${jwtToken}`,
     },
   };
 
@@ -109,8 +107,7 @@ const deleteTodoItem = async (id) => {
 const registerUser = async (user) => {
   const config = {
     method: 'post',
-    // url: 'http://localhost:3000/api/v1/sessions/register',
-    url: 'https://tasktacklerapi.onrender.com/api/v1/sessions/register',
+    url: `${baseURL}/${registerRoute}`,
     data: { ...user },
   };
 
@@ -126,8 +123,7 @@ const registerUser = async (user) => {
 const loginUser = async (user) => {
   const config = {
     method: 'post',
-    // url: 'http://localhost:3000/api/v1/sessions/logon',
-    url: 'https://tasktacklerapi.onrender.com/api/v1/sessions/logon',
+    url: `${baseURL}/${loginRoute}`,
     data: { ...user },
   };
 

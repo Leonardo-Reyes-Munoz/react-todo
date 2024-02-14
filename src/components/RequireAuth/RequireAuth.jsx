@@ -13,7 +13,7 @@ function RequireAuth({ children }) {
     }
   }, [navigate]);
 
-  return children;
+  return <>{children}</>;
 }
 
 export default RequireAuth;

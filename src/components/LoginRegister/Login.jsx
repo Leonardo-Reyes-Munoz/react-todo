@@ -21,6 +21,8 @@ function LoginForm({ handleSetLoginForm }) {
       navigate('/dashboard');
     } else {
       console.log('Unauthorized user Toast Message. Please try again.');
+      navigate('/');
+      return;
     }
     return;
   }

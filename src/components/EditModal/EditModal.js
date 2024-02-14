@@ -19,7 +19,11 @@ export default function EditModal({ onClose, todo, loadTodoList }) {
     loadTodoList();
   }
 
-  console.log(dueDate);
+  let formattedDueDate = '';
+
+  if (dueDate) {
+    formattedDueDate = dueDate.split('T')[0];
+  }
 
   return (
     <div className={styles.modal}>
@@ -42,7 +46,7 @@ export default function EditModal({ onClose, todo, loadTodoList }) {
               type="date"
               name="dueDate"
               id="dueDate"
-              defaultValue={dueDate}
+              defaultValue={formattedDueDate}
             />
           </div>
           <div className={styles.btnContainer}>

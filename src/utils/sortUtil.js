@@ -1,8 +1,8 @@
 function sortByIsChecked(todoList) {
   let sortedTodoList = todoList.sort((objectA, objectB) => {
-    return objectA.isChecked === objectB.isChecked
+    return objectA.isCompleted === objectB.isCompleted
       ? 0
-      : objectA.isChecked
+      : objectA.isCompleted
       ? 1
       : -1;
   });

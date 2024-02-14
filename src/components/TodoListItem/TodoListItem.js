@@ -7,7 +7,7 @@ import { updateTodoItem } from '../../utils/fetchUtil';
 
 const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
   const [showModal, setShowModal] = useState(false);
-  const [completed, setCompleted] = useState(todo.isChecked);
+  const [isCompleted, setIsCompleted] = useState(todo.isCompleted);
 
   if (showModal) {
     document.body.classList.add('active-modal');
@@ -15,10 +15,21 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
     document.body.classList.remove('active-modal');
   }
 
-  async function handleCheck(id, title, isChecked, dueDate) {
-    todo.isChecked = !completed;
-    updateTodoItem(id, title, (isChecked = !completed), dueDate);
-    setCompleted(!completed);
+  async function handleCheck(
+    updatedID,
+    updatedTitle,
+    isCompleted,
+    updatedDueDate
+  ) {
+    const updatedIsCompleted = !isCompleted;
+
+    await updateTodoItem(
+      updatedID,
+      updatedTitle,
+      updatedIsCompleted,
+      updatedDueDate
+    );
+    setIsCompleted(!isCompleted);
   }
 
   //parse date into a more readable date string
@@ -38,11 +49,11 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
           <input
             id={todo.id}
             type="checkbox"
-            // isChecked initial value of null with ternary operator
+            // isCompleted initial value of null with ternary operator
             // allows for updating todo-list in browser without doing a GET request after PATCH request.
-            checked={completed}
+            checked={isCompleted}
             onChange={() =>
-              handleCheck(todo.id, todo.title, todo.isChecked, todo.dueDate)
+              handleCheck(todo.id, todo.title, todo.isCompleted, todo.dueDate)
             }
           />
           <label htmlFor={todo.id}>{todo.title}</label>

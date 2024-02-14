@@ -6,38 +6,46 @@ import AddTodoForm from '../AddTodoForm/AddTodoForm';
 import { getAllTodoItems, deleteTodoItem } from '../../utils/fetchUtil';
 import { sortByTitle, sortByIsChecked } from '../../utils/sortUtil';
 
-function TodoContainer({ tableName }) {
-  const [todoList, setTodoList] = React.useState([]);
+function TodoContainer({ tableName, handleSetTodoList, todoList }) {
   const [isLoading, setIsLoading] = React.useState(true);
   const [sort, setSort] = React.useState(false);
 
   async function loadTodoList() {
-    setIsLoading(true);
-    const todos = await getAllTodoItems();
-    // console.log('todo list response:', todos);
-    const sortedList = sortByIsChecked(todos);
-    setTodoList(sortedList);
-    setIsLoading(false);
-  }
+    const jwtToken = localStorage.getItem('jwtToken');
+    if (jwtToken) {
+      setIsLoading(true);
+      const todos = await getAllTodoItems();
 
-  React.useEffect(() => {
-    loadTodoList();
-  }, [tableName]);
+      if (todos === []) {
+        console.log(`No items.`);
+        setIsLoading(!isLoading);
+        return;
+      }
+      const sortedList = sortByIsChecked(todos);
+
+      handleSetTodoList(sortedList);
+      setIsLoading(false);
+    }
+  }
 
   async function handleRemoveTodo(id) {
     await deleteTodoItem(id);
     const filteredTodoList = todoList.filter((item) => {
       return item.id !== id;
     });
-    setTodoList(filteredTodoList);
+    handleSetTodoList(filteredTodoList);
   }
 
   function handleSort() {
     let sortedList = sortByTitle(todoList, sort);
     sortedList = sortByIsChecked(sortedList);
     setSort(!sort);
-    setTodoList(sortedList);
+    handleSetTodoList(sortedList);
   }
+
+  React.useEffect(() => {
+    loadTodoList();
+  }, []);
 
   return (
     <>
