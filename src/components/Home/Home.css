@@ -88,7 +88,8 @@ body:has(.home) {
 
 .inputItem > input[type='text' i],
 .inputItem > input[type='email' i],
-.inputItem > input[type='password' i] {
+.inputItem > input[type='password' i],
+.inputItem > input[type='date' i] {
   width: auto;
   height: auto;
   font-size: 100%;
@@ -96,4 +97,13 @@ body:has(.home) {
   border-style: solid;
   border-width: 0.1rem;
   font-family: 'Playpen Sans', cursive;
+}
+
+/* TABLET FORMATTING */
+@media screen and (min-width: 435px) {
+  input[type='text' i],
+  input[type='date' i] {
+    width: 70%;
+    max-width: 25rem;
+  }
 }

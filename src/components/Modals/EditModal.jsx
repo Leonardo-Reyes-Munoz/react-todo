@@ -1,4 +1,4 @@
-import styles from './EditModal.module.css';
+import './modal.css';
 import { updateTodoItem } from '../../utils/fetchUtil';
 
 export default function EditModal({ onClose, todo, loadTodoList }) {
@@ -26,12 +26,12 @@ export default function EditModal({ onClose, todo, loadTodoList }) {
   }
 
   return (
-    <div className={styles.modal}>
-      <div className={styles.overlay} onClick={onClose}></div>
-      <div className={styles.modalContent}>
-        <h2 className={styles.modalTitle}>Edit Task</h2>
+    <div className="modal">
+      <div className="overlay" onClick={onClose}></div>
+      <div className="modalContent">
+        <h2 className="modalTitle">Edit Task</h2>
         <form onSubmit={handleEditSubmit}>
-          <div className={styles.inputItem}>
+          <div className="inputItem">
             <label htmlFor="newTitle">Task</label>
             <input
               type="text"
@@ -40,7 +40,7 @@ export default function EditModal({ onClose, todo, loadTodoList }) {
               id="newTitle"
             />
           </div>
-          <div className={styles.inputItem}>
+          <div className="inputItem">
             <label htmlFor="dueDate"> Due: </label>
             <input
               type="date"
@@ -49,8 +49,8 @@ export default function EditModal({ onClose, todo, loadTodoList }) {
               defaultValue={formattedDueDate}
             />
           </div>
-          <div className={styles.btnContainer}>
-            <button type="submit" className={styles.submitEdit}>
+          <div className="btnContaine">
+            <button type="submit" className="submitEdit">
               Submit Edit
             </button>
             <button
@@ -58,7 +58,7 @@ export default function EditModal({ onClose, todo, loadTodoList }) {
                 e.preventDefault();
                 onClose();
               }}
-              className={styles.cancel}
+              className="cancel"
             >
               Cancel
             </button>

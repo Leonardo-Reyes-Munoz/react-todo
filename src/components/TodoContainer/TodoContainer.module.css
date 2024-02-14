@@ -12,7 +12,7 @@ ul {
   padding: 0 1rem 1rem 1rem;
 }
 
-.title {
+.containerHeader {
   color: #2e2e2e;
   background-color: var(--happy-yellow);
   font-size: 1.5rem;
@@ -21,6 +21,18 @@ ul {
   margin-bottom: 0;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btnContainer {
+  display: flex;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+.btnContainer > button {
+  margin: auto;
 }
 
 .sort {

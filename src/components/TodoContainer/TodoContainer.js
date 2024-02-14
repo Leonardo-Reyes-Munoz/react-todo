@@ -2,13 +2,24 @@ import React from 'react';
 import TodoList from '../TodoList/TodoList';
 import styles from './TodoContainer.module.css';
 import PropTypes from 'prop-types';
-import AddTodoForm from '../AddTodoForm/AddTodoForm';
+import { useState } from 'react';
+import { createPortal } from 'react-dom';
+// import AddTodoForm from '../AddTodoForm/AddTodoForm';
+import AddTodoModal from '../Modals/AddTodoModal';
+
 import { getAllTodoItems, deleteTodoItem } from '../../utils/fetchUtil';
 import { sortByTitle, sortByIsChecked } from '../../utils/sortUtil';
 
 function TodoContainer({ tableName, handleSetTodoList, todoList }) {
   const [isLoading, setIsLoading] = React.useState(true);
   const [sort, setSort] = React.useState(false);
+
+  const [showModal, setShowModal] = useState(false);
+  if (showModal) {
+    document.body.classList.add('active-modal');
+  } else {
+    document.body.classList.remove('active-modal');
+  }
 
   async function loadTodoList() {
     const jwtToken = localStorage.getItem('jwtToken');
@@ -49,20 +60,36 @@ function TodoContainer({ tableName, handleSetTodoList, todoList }) {
 
   return (
     <>
-      <h1 className="page-title">Weekly Tasks</h1>
+      <h1 className="page-title">Tasks</h1>
 
-      <AddTodoForm loadTodoList={loadTodoList} />
+      {/* <AddTodoForm loadTodoList={loadTodoList} />  */}
 
       {isLoading ? (
         <p>Loading...</p>
       ) : (
         <div className={styles.TodoContainer}>
-          <h1 className={styles.title}>
-            {tableName}
-            <button className={styles.sort} onClick={() => handleSort()}>
-              <span className="material-symbols-outlined">swap_vert</span>
-            </button>
-          </h1>
+          <div className={styles.containerHeader}>
+            <h1 className={styles.title}>{tableName} </h1>
+            <div className={styles.btnContainer}>
+              <button
+                className={styles.sort}
+                onClick={() => setShowModal(true)}
+              >
+                <span className="material-symbols-outlined">add</span>
+              </button>
+              {showModal &&
+                createPortal(
+                  <AddTodoModal
+                    onClose={() => setShowModal(false)}
+                    loadTodoList={loadTodoList}
+                  />,
+                  document.body
+                )}
+              <button className={styles.sort} onClick={() => handleSort()}>
+                <span className="material-symbols-outlined">swap_vert</span>
+              </button>
+            </div>
+          </div>
           <TodoList
             todoList={todoList}
             handleRemoveTodo={handleRemoveTodo}

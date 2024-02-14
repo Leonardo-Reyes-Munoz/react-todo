@@ -41,13 +41,14 @@ const getAllTodoItems = async () => {
   }
 };
 
-const createTodoItem = async (title) => {
+const createTodoItem = async (title, dueDate) => {
   const jwtToken = localStorage.getItem('jwtToken');
   const config = {
     method: 'post',
     url: `${baseURL}/${taskRoute}`,
     data: {
       title,
+      dueDate,
     },
     headers: {
       Authorization: `Bearer ${jwtToken}`,

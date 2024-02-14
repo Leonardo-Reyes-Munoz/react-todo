@@ -1,6 +1,6 @@
 import styles from './TodoListItem.module.css';
 import PropTypes from 'prop-types';
-import EditModal from '../EditModal/EditModal';
+import EditModal from '../Modals/EditModal';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { updateTodoItem } from '../../utils/fetchUtil';

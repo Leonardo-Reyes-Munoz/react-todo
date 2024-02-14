@@ -69,3 +69,36 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.AddTodoForm {
+  max-width: 90%;
+  background-color: antiquewhite;
+  border-color: var(--relaxed-brown);
+  border-style: solid;
+  border-radius: 1rem;
+  border-width: 1px;
+  text-align: center;
+  margin: auto;
+  line-height: 3rem;
+  box-shadow: 5px 5px 5px var(--relaxed-gray);
+}
+
+.add {
+  background-color: whitesmoke;
+  color: var(--action-green);
+  border-color: var(--action-green);
+  border-radius: 50%;
+  margin-left: 1rem;
+  vertical-align: middle;
+}
+
+.add:hover {
+  background-color: var(--relaxed-orange);
+  color: whitesmoke;
+  border-color: var(--relaxed-orange);
+  transition: 0.25s;
+}
+
+span {
+  font-family: 'Sriracha', cursive;
+}
