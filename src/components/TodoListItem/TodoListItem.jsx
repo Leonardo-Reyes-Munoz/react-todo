@@ -6,8 +6,14 @@ import { createPortal } from 'react-dom';
 import { updateTodoItem } from '../../utils/fetchUtil';
 
 const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
+  const {
+    id: todoId,
+    title: todoTitle,
+    isCompleted: todoIsCompleted,
+    dueDate: todoDueDate,
+  } = todo;
   const [showModal, setShowModal] = useState(false);
-  const [isCompleted, setIsCompleted] = useState(todo.isCompleted);
+  const [isCompleted, setIsCompleted] = useState(todoIsCompleted);
 
   if (showModal) {
     document.body.classList.add('active-modal');
@@ -15,21 +21,10 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
     document.body.classList.remove('active-modal');
   }
 
-  async function handleCheck(
-    updatedID,
-    updatedTitle,
-    isCompleted,
-    updatedDueDate
-  ) {
-    const updatedIsCompleted = !isCompleted;
-
-    await updateTodoItem(
-      updatedID,
-      updatedTitle,
-      updatedIsCompleted,
-      updatedDueDate
-    );
-    setIsCompleted(!isCompleted);
+  async function handleCheck(currentTodoIsCompleted) {
+    const updatedCompleted = !currentTodoIsCompleted;
+    await updateTodoItem(todoId, todoTitle, updatedCompleted, todoDueDate);
+    setIsCompleted(!currentTodoIsCompleted);
   }
 
   //parse date into a more readable date string
@@ -47,14 +42,12 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
       <div className={styles.TodoItem}>
         <div>
           <input
-            id={todo.id}
+            id={todoId}
             type="checkbox"
             // isCompleted initial value of null with ternary operator
             // allows for updating todo-list in browser without doing a GET request after PATCH request.
             checked={isCompleted}
-            onChange={() =>
-              handleCheck(todo.id, todo.title, todo.isCompleted, todo.dueDate)
-            }
+            onChange={() => handleCheck(isCompleted)}
           />
           <label htmlFor={todo.id}>{todo.title}</label>
           {todo.dueDate && <p className={styles.date}>Due: {formattedDate}</p>}

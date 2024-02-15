@@ -8,7 +8,11 @@ import { createPortal } from 'react-dom';
 import AddTodoModal from '../Modals/AddTodoModal';
 
 import { getAllTodoItems, deleteTodoItem } from '../../utils/fetchUtil';
-import { sortByTitle, sortByIsChecked } from '../../utils/sortUtil';
+import {
+  sortByTitle,
+  sortByIsCompleted,
+  sortByDueDate,
+} from '../../utils/sortUtil';
 
 function TodoContainer({ tableName, handleSetTodoList, todoList }) {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -32,7 +36,7 @@ function TodoContainer({ tableName, handleSetTodoList, todoList }) {
         setIsLoading(!isLoading);
         return;
       }
-      const sortedList = sortByIsChecked(todos);
+      const sortedList = sortByIsCompleted(todos);
 
       handleSetTodoList(sortedList);
       setIsLoading(false);
@@ -48,8 +52,9 @@ function TodoContainer({ tableName, handleSetTodoList, todoList }) {
   }
 
   function handleSort() {
-    let sortedList = sortByTitle(todoList, sort);
-    sortedList = sortByIsChecked(sortedList);
+    // let sortedList = sortByIsCompleted(todoList);
+    // sortedList = sortByTitle(todoList, sort);
+    let sortedList = sortByDueDate(todoList, sort);
     setSort(!sort);
     handleSetTodoList(sortedList);
   }
