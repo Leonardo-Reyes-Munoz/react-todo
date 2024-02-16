@@ -1,5 +1,6 @@
 import { registerUser } from '../../utils/fetchUtil';
 import React from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 function RegisterForm({ handleSetRegisterForm }) {
   const formRef = React.useRef(null);
@@ -12,12 +13,16 @@ function RegisterForm({ handleSetRegisterForm }) {
     const response = await registerUser(formProps);
 
     if (response && response.status === 201) {
-      handleSetRegisterForm();
+      toast.success('Successfully registered');
+      return handleSetRegisterForm();
     }
+    console.log(response);
+    return toast.error(response);
   }
 
   return (
     <div className="login-register">
+      <Toaster />
       <h3>Please register:</h3>
       <form ref={formRef} onSubmit={handleRegisterSubmit}>
         <div className="inputItem">

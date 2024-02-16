@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toast from 'react-hot-toast';
 // testing baseURL
 const baseURL = 'http://localhost:3000/api/v1';
 
@@ -117,7 +118,8 @@ const registerUser = async (user) => {
     console.log('You have successfully registered! Please log-in');
     return response;
   } catch (error) {
-    return console.log('Failed: ', error.response.data.msg);
+    const msg = error.response.data.msg;
+    return msg;
   }
 };
 
@@ -134,7 +136,7 @@ const loginUser = async (user) => {
     return response;
   } catch (error) {
     const msg = error.response.data.msg;
-    console.log(msg);
+    toast.error(msg);
     return msg;
   }
 };
