@@ -13,7 +13,6 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
     dueDate: todoDueDate,
   } = todo;
   const [showModal, setShowModal] = useState(false);
-  const [isCompleted, setIsCompleted] = useState(todoIsCompleted);
 
   if (showModal) {
     document.body.classList.add('active-modal');
@@ -24,7 +23,8 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
   async function handleCheck(currentTodoIsCompleted) {
     const updatedCompleted = !currentTodoIsCompleted;
     await updateTodoItem(todoId, todoTitle, updatedCompleted, todoDueDate);
-    setIsCompleted(!currentTodoIsCompleted);
+
+    loadTodoList();
   }
 
   //parse date into a more readable date string
@@ -46,8 +46,8 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
             type="checkbox"
             // isCompleted initial value of null with ternary operator
             // allows for updating todo-list in browser without doing a GET request after PATCH request.
-            checked={isCompleted}
-            onChange={() => handleCheck(isCompleted)}
+            checked={todoIsCompleted}
+            onChange={() => handleCheck(todoIsCompleted)}
           />
           <label htmlFor={todo.id}>{todo.title}</label>
           {todo.dueDate && <p className={styles.date}>Due: {formattedDate}</p>}

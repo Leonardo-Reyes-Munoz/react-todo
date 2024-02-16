@@ -55,6 +55,7 @@ function TodoContainer({ tableName, handleSetTodoList, todoList }) {
     // let sortedList = sortByIsCompleted(todoList);
     // sortedList = sortByTitle(todoList, sort);
     let sortedList = sortByDueDate(todoList, sort);
+    sortedList = sortByIsCompleted(sortedList);
     setSort(!sort);
     handleSetTodoList(sortedList);
   }
