@@ -54,7 +54,7 @@
 }
 
 .cancel:hover {
-  color: var(--action-red);
+  color: var(--off-white);
   border-color: var(--action-red);
 }
 
