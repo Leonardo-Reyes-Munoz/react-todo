@@ -66,3 +66,7 @@ button {
 .task-logo {
   color: var(--action-green);
 }
+
+.favicon {
+  border-radius: 50%;
+}

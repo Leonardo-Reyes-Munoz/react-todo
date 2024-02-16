@@ -3,6 +3,10 @@ import styles from './Navbar.module.css';
 export default function Navbar({ handleLogout }) {
   const userName = localStorage.getItem('userName');
 
+  if (!userName) {
+    return;
+  }
+
   const capitalizedUserName =
     userName.charAt(0).toUpperCase() + userName.slice(1);
 
