@@ -1,6 +1,7 @@
 import { loginUser } from '../../utils/fetchUtil';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 function LoginForm({ handleSetLoginForm }) {
   const formRef = React.useRef(null);
@@ -20,7 +21,7 @@ function LoginForm({ handleSetLoginForm }) {
       localStorage.setItem('userName', name);
       navigate('/dashboard');
     } else {
-      console.log('Unauthorized user Toast Message. Please try again.');
+      toast.error(response);
       navigate('/');
       return;
     }
@@ -28,6 +29,7 @@ function LoginForm({ handleSetLoginForm }) {
   }
   return (
     <div className="login-register">
+      <Toaster />
       <h3>Submit login information:</h3>
       <form ref={formRef} onSubmit={handleLoginSubmit}>
         <div className="inputItem">

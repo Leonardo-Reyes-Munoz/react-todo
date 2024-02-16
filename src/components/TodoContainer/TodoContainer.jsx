@@ -4,15 +4,11 @@ import styles from './TodoContainer.module.css';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-// import AddTodoForm from '../AddTodoForm/AddTodoForm';
 import AddTodoModal from '../Modals/AddTodoModal';
+import toast, { Toaster } from 'react-hot-toast';
 
 import { getAllTodoItems, deleteTodoItem } from '../../utils/fetchUtil';
-import {
-  sortByTitle,
-  sortByIsCompleted,
-  sortByDueDate,
-} from '../../utils/sortUtil';
+import { sortByIsCompleted, sortByDueDate } from '../../utils/sortUtil';
 
 function TodoContainer({ tableName, handleSetTodoList, todoList }) {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -44,16 +40,15 @@ function TodoContainer({ tableName, handleSetTodoList, todoList }) {
   }
 
   async function handleRemoveTodo(id) {
-    await deleteTodoItem(id);
+    const response = await deleteTodoItem(id);
     const filteredTodoList = todoList.filter((item) => {
       return item.id !== id;
     });
+    toast.success(response);
     handleSetTodoList(filteredTodoList);
   }
 
   function handleSort() {
-    // let sortedList = sortByIsCompleted(todoList);
-    // sortedList = sortByTitle(todoList, sort);
     let sortedList = sortByDueDate(todoList, sort);
     sortedList = sortByIsCompleted(sortedList);
     setSort(!sort);
@@ -66,9 +61,8 @@ function TodoContainer({ tableName, handleSetTodoList, todoList }) {
 
   return (
     <>
+      <Toaster />
       <h1 className="page-title">Tasks</h1>
-
-      {/* <AddTodoForm loadTodoList={loadTodoList} />  */}
 
       {isLoading ? (
         <p>Loading...</p>

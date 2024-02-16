@@ -60,7 +60,7 @@ const createTodoItem = async (title, dueDate) => {
   } catch (error) {
     return console.log('Failed: Unable to create new item:', error.message);
   }
-  console.log('Success: New todo item created');
+  return 'New task created';
 };
 
 const updateTodoItem = async (id, title, isCompleted, dueDate) => {
@@ -82,7 +82,7 @@ const updateTodoItem = async (id, title, isCompleted, dueDate) => {
   } catch (error) {
     return console.log('Failed: unable to update item:', error.message);
   }
-  console.log('Success: Task was successfully updated.');
+  return 'Task was updated.';
 };
 
 const deleteTodoItem = async (id) => {
@@ -100,7 +100,7 @@ const deleteTodoItem = async (id) => {
   } catch (error) {
     return console.log('Failed: unable to delete item:', error.message);
   }
-  console.log('Success: Todo item has been deleted');
+  return 'Task deleted';
 };
 
 // User Registration and Login HTTP Requests
@@ -133,7 +133,9 @@ const loginUser = async (user) => {
     console.log('You have successfully logged-in!');
     return response;
   } catch (error) {
-    return console.log('Failed: ', error.response.data.msg);
+    const msg = error.response.data.msg;
+    console.log(msg);
+    return msg;
   }
 };
 

@@ -1,22 +1,25 @@
 import './modal.css';
 import { createTodoItem } from '../../utils/fetchUtil';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function AddTodoModal({ onClose, loadTodoList }) {
   async function handleAddSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const formProps = Object.fromEntries(formData);
-    console.log(formProps);
+
     const newTitle = formProps.newTitle;
     const updatedDueDate = formProps.dueDate === '' ? null : formProps.dueDate;
 
-    await createTodoItem(newTitle, updatedDueDate);
+    const response = await createTodoItem(newTitle, updatedDueDate);
     onClose();
     loadTodoList();
+    toast.success(response);
   }
 
   return (
     <div className="modal">
+      <Toaster />
       <div className="overlay" onClick={onClose}></div>
       <div className="modalContent">
         <h2 className="modalTitle">Add New Task</h2>

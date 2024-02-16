@@ -4,6 +4,7 @@ import EditModal from '../Modals/EditModal';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { updateTodoItem } from '../../utils/fetchUtil';
+import toast, { Toaster } from 'react-hot-toast';
 
 const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
   const {
@@ -23,7 +24,6 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
   async function handleCheck(currentTodoIsCompleted) {
     const updatedCompleted = !currentTodoIsCompleted;
     await updateTodoItem(todoId, todoTitle, updatedCompleted, todoDueDate);
-
     loadTodoList();
   }
 
