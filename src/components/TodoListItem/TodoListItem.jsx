@@ -4,7 +4,6 @@ import EditModal from '../Modals/EditModal';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { updateTodoItem } from '../../utils/fetchUtil';
-import toast, { Toaster } from 'react-hot-toast';
 
 const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
   const {
