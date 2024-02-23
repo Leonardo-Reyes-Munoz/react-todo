@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import AddTodoModal from '../Modals/AddTodoModal';
 import toast, { Toaster } from 'react-hot-toast';
+import AddTodoListModal from '../Modals/AddTodoListModal';
 
 import { getAllTodoItems, deleteTodoItem } from '../../utils/fetchUtil';
 import { sortByIsCompleted, sortByDueDate } from '../../utils/sortUtil';
@@ -13,9 +14,10 @@ import { sortByIsCompleted, sortByDueDate } from '../../utils/sortUtil';
 function TodoContainer({ tableName, handleSetTodoList, todoList }) {
   const [isLoading, setIsLoading] = React.useState(true);
   const [sort, setSort] = React.useState(false);
-
   const [showModal, setShowModal] = useState(false);
-  if (showModal) {
+  const [showListModal, setShowListModal] = useState(false);
+
+  if (showModal || showListModal) {
     document.body.classList.add('active-modal');
   } else {
     document.body.classList.remove('active-modal');
@@ -63,6 +65,14 @@ function TodoContainer({ tableName, handleSetTodoList, todoList }) {
     <>
       <Toaster />
       <h1 className="page-title">Tasks</h1>
+      <button onClick={() => setShowListModal(true)}>
+        Create New List <span className="material-symbols-outlined">add</span>
+      </button>
+      {showListModal &&
+        createPortal(
+          <AddTodoListModal onClose={() => setShowListModal(false)} />,
+          document.body
+        )}
 
       {isLoading ? (
         <p>Loading...</p>

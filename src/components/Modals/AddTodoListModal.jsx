@@ -1,18 +1,17 @@
 import './modal.css';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function AddTodoListModal({ onClose, loadTodoList }) {
+export default function AddTodoListModal({ onClose }) {
   async function handleAddSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const formProps = Object.fromEntries(formData);
 
     const newTitle = formProps.newTitle;
+    const todoListColor = formProps.color;
+    console.log(newTitle, todoListColor);
 
-    const response = await createTodoItem(newTitle, updatedDueDate);
     onClose();
-    loadTodoList();
-    toast.success(response);
   }
 
   return (
