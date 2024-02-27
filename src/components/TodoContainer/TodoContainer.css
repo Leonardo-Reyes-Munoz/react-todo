@@ -1,0 +1,6 @@
+.todo-container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  flex-shrink: none;
+}

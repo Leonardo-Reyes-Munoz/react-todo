@@ -21,7 +21,6 @@ function App() {
     <>
       <Navbar handleLogout={handleLogout} />
       <TodoContainer
-        tableName="Today"
         handleSetTodoList={handleSetTodoList}
         todoList={todoList}
       />

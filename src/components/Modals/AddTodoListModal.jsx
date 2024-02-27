@@ -1,7 +1,11 @@
 import './modal.css';
 import toast, { Toaster } from 'react-hot-toast';
+import { useState } from 'react';
 
-export default function AddTodoListModal({ onClose }) {
+export default function AddTodoListModal({ onClose, onSubmit }) {
+  const [listTitle, setListTitle] = useState('');
+  const [color, setColor] = useState('');
+
   async function handleAddSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -10,6 +14,10 @@ export default function AddTodoListModal({ onClose }) {
     const newTitle = formProps.newTitle;
     const todoListColor = formProps.color;
     console.log(newTitle, todoListColor);
+    onSubmit(newTitle, todoListColor);
+
+    setListTitle('');
+    setColor('');
 
     onClose();
   }
