@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { updateTodoItem } from '../../utils/fetchUtil';
 
-const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
+const TodoListItem = ({ todo, onHandleRemoveTodo, loadTodoListData }) => {
   const {
     id: todoId,
     title: todoTitle,
@@ -23,7 +23,7 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
   async function handleCheck(currentTodoIsCompleted) {
     const updatedCompleted = !currentTodoIsCompleted;
     await updateTodoItem(todoId, todoTitle, updatedCompleted, todoDueDate);
-    loadTodoList();
+    loadTodoListData();
   }
 
   //parse date into a more readable date string
@@ -64,7 +64,7 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
               <EditModal
                 onClose={() => setShowModal(false)}
                 todo={todo}
-                loadTodoList={loadTodoList}
+                loadTodoListData={loadTodoListData}
               />,
               document.body
             )}
@@ -72,7 +72,7 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
           <button
             type="button"
             className={styles.remove}
-            onClick={() => handleRemoveTodo(todo.id)}
+            onClick={() => onHandleRemoveTodo(todo.id)}
           >
             <span className="material-symbols-outlined">delete</span>
           </button>
@@ -85,7 +85,6 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
 
 TodoListItem.propTypes = {
   todo: PropTypes.object,
-  handleRemoveTodo: PropTypes.func.isRequired,
 };
 
 export default TodoListItem;

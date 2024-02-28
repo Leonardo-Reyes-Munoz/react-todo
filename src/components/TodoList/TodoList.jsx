@@ -9,7 +9,7 @@ import { createPortal } from 'react-dom';
 function TodoList({
   tableName,
   todoList,
-  handleRemoveTodo,
+  onHandleRemoveTodo,
   loadTodoListData,
   handleSetTodoListData,
 }) {
@@ -20,10 +20,10 @@ function TodoList({
     let sortedList = sortByDueDate(todoList, sort);
     sortedList = sortByIsCompleted(sortedList);
     setSort(!sort);
-    // handleSetTodoList(sortedList);
+    handleSetTodoListData(sortedList);
   }
 
-  // const [todoLists, setTodoLists] = useState([]);
+  const [todoLists, setTodoLists] = useState([]);
 
   if (showModal) {
     document.body.classList.add('active-modal');
@@ -44,7 +44,7 @@ function TodoList({
               createPortal(
                 <AddTodoModal
                   onClose={() => setShowModal(false)}
-                  // loadTodoList={loadTodoList}
+                  loadTodoListData={loadTodoListData}
                 />,
                 document.body
               )}
@@ -58,9 +58,9 @@ function TodoList({
             <TodoListItem
               key={todo._id}
               todo={todo}
-              // handleRemoveTodo={handleRemoveTodo}
+              onHandleRemoveTodo={onHandleRemoveTodo}
               index={todoList.indexOf(todo)}
-              // loadTodoList={loadTodoList}
+              loadTodoListData={loadTodoListData}
             />
           ))}
         </ul>
@@ -71,7 +71,6 @@ function TodoList({
 
 TodoList.propTypes = {
   todoList: PropTypes.array,
-  handleRemoveTodo: PropTypes.func.isRequired,
 };
 
 export default TodoList;

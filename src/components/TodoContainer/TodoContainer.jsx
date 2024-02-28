@@ -77,7 +77,7 @@ function TodoContainer({ handleSetTodoListData, todoListData }) {
               key={list._id}
               tableName={list.title}
               todoList={list.tasks}
-              handleRemoveTodo={handleRemoveTodo}
+              onHandleRemoveTodo={() => handleRemoveTodo()}
               loadTodoListData={loadTodoListData}
               handleSetTodoListData={handleSetTodoListData}
             />
