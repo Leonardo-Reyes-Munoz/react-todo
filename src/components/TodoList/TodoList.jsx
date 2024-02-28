@@ -9,9 +9,9 @@ import { createPortal } from 'react-dom';
 function TodoList({
   tableName,
   todoList,
-  // handleRemoveTodo,
-  // loadTodoList,
-  // handleSetTodoList,
+  handleRemoveTodo,
+  loadTodoListData,
+  handleSetTodoListData,
 }) {
   const [sort, setSort] = React.useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -56,7 +56,7 @@ function TodoList({
         <ul>
           {todoList.map((todo) => (
             <TodoListItem
-              key={todo.id}
+              key={todo._id}
               todo={todo}
               // handleRemoveTodo={handleRemoveTodo}
               index={todoList.indexOf(todo)}
