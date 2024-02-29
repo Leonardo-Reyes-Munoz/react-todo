@@ -75,11 +75,13 @@ function TodoContainer({ handleSetTodoListData, todoListData }) {
           {todoListData.map((list) => (
             <TodoList
               key={list._id}
+              id={list._id}
               tableName={list.title}
               todoList={list.tasks}
               onHandleRemoveTodo={() => handleRemoveTodo()}
               loadTodoListData={loadTodoListData}
               handleSetTodoListData={handleSetTodoListData}
+              color={list.color}
             />
           ))}
         </div>

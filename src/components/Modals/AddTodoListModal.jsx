@@ -11,8 +11,6 @@ export default function AddTodoListModal({ onClose, onSubmit }) {
 
     const newTitle = formProps.newTitle;
     const todoListColor = formProps.color;
-
-    console.log(newTitle, todoListColor);
     const response = await createTodoList(newTitle, todoListColor);
     toast.success(response);
 
@@ -58,7 +56,7 @@ export default function AddTodoListModal({ onClose, onSubmit }) {
               <input
                 type="radio"
                 name="color"
-                value="orange"
+                value="purple"
                 id="color-purple"
               ></input>
               <label
@@ -68,7 +66,7 @@ export default function AddTodoListModal({ onClose, onSubmit }) {
               <input
                 type="radio"
                 name="color"
-                value="purple"
+                value="pink"
                 id="color-pink"
               ></input>
               <label

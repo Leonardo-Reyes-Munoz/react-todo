@@ -9,6 +9,8 @@ const registerRoute = 'sessions/register';
 const loginRoute = 'sessions/logon';
 const listsRoute = 'lists';
 
+// * || LIST HTTP Requests *
+
 const getAllListData = async () => {
   const jwtToken = localStorage.getItem('jwtToken');
   const config = {
@@ -54,6 +56,26 @@ const createTodoList = async (title, color) => {
   }
   return 'New list created';
 };
+
+const deleteList = async (id) => {
+  const jwtToken = localStorage.getItem('jwtToken');
+  const config = {
+    method: 'delete',
+    url: `${baseURL}/${listsRoute}/${id}`,
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
+    },
+  };
+
+  try {
+    await axios(config);
+  } catch (error) {
+    return console.log('Failed: unable to delete item:', error.message);
+  }
+  return 'List deleted';
+};
+
+// * || TASK HTTP Requests *
 
 const createTodoItem = async (title, dueDate) => {
   const jwtToken = localStorage.getItem('jwtToken');
@@ -117,7 +139,7 @@ const deleteTodoItem = async (id) => {
   return 'Task deleted';
 };
 
-// User Registration and Login HTTP Requests
+// * || REGISTRATION AND USER LOGIN *
 
 const registerUser = async (user) => {
   const config = {
@@ -162,4 +184,5 @@ export {
   loginUser,
   getAllListData,
   createTodoList,
+  deleteList,
 };
