@@ -77,11 +77,11 @@ const deleteList = async (id) => {
 
 // * || TASK HTTP Requests *
 
-const createTodoItem = async (title, dueDate) => {
+const createTodoItem = async (title, dueDate, listId) => {
   const jwtToken = localStorage.getItem('jwtToken');
   const config = {
     method: 'post',
-    url: `${baseURL}/${taskRoute}`,
+    url: `${baseURL}/${taskRoute}/${listId}`,
     data: {
       title,
       dueDate,
@@ -99,11 +99,11 @@ const createTodoItem = async (title, dueDate) => {
   return 'New task created';
 };
 
-const updateTodoItem = async (id, title, isCompleted, dueDate) => {
+const updateTodoItem = async (taskId, title, isCompleted, dueDate, listId) => {
   const jwtToken = localStorage.getItem('jwtToken');
   const config = {
     method: 'patch',
-    url: `${baseURL}/${taskRoute}/${id}`,
+    url: `${baseURL}/${taskRoute}/${listId}/${taskId}`,
     data: {
       title,
       isCompleted,

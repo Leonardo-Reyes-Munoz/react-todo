@@ -18,7 +18,14 @@ function TodoList({
   color,
 }) {
   const [sort, setSort] = React.useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showAddTaskModal, setShowAddTaskModal] = useState(false);
+
+  if (showAddTaskModal) {
+    document.body.classList.add('active-modal');
+  } else {
+    document.body.classList.remove('active-modal');
+  }
+  // const [taskList, setTaskList] = useState(todoList);
 
   const colorMAP = {
     yellow: '#fae360',
@@ -34,12 +41,6 @@ function TodoList({
     sortedList = sortByIsCompleted(sortedList);
     setSort(!sort);
     handleSetTodoListData(sortedList);
-  }
-
-  if (showModal) {
-    document.body.classList.add('active-modal');
-  } else {
-    document.body.classList.remove('active-modal');
   }
 
   const handleRemoveList = async (id) => {
@@ -59,16 +60,17 @@ function TodoList({
           <div className={styles.btnContainer}>
             <button
               className={styles.ListBtn}
-              onClick={() => setShowModal(true)}
+              onClick={() => setShowAddTaskModal(true)}
               style={{ backgroundColor: bannerColor }}
             >
               <span className="material-symbols-outlined">add</span>
             </button>
-            {showModal &&
+            {showAddTaskModal &&
               createPortal(
                 <AddTodoModal
-                  onClose={() => setShowModal(false)}
+                  onClose={() => setShowAddTaskModal(false)}
                   loadTodoListData={loadTodoListData}
+                  listId={id}
                 />,
                 document.body
               )}
@@ -97,6 +99,7 @@ function TodoList({
               onHandleRemoveTodo={onHandleRemoveTodo}
               index={todoList.indexOf(todo)}
               loadTodoListData={loadTodoListData}
+              listId={id}
             />
           ))}
         </ul>

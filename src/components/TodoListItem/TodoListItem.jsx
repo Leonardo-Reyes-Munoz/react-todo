@@ -5,7 +5,13 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { updateTodoItem } from '../../utils/fetchUtil';
 
-const TodoListItem = ({ todo, onHandleRemoveTodo, loadTodoListData }) => {
+const TodoListItem = ({
+  todo,
+  onHandleRemoveTodo,
+  loadTodoListData,
+  index,
+  listId,
+}) => {
   const {
     id: todoId,
     title: todoTitle,
@@ -65,6 +71,7 @@ const TodoListItem = ({ todo, onHandleRemoveTodo, loadTodoListData }) => {
                 onClose={() => setShowModal(false)}
                 todo={todo}
                 loadTodoListData={loadTodoListData}
+                listId={listId}
               />,
               document.body
             )}

@@ -10,9 +10,9 @@ import './TodoContainer.css';
 
 function TodoContainer({ handleSetTodoListData, todoListData }) {
   const [isLoading, setIsLoading] = React.useState(false);
-  const [showListModal, setShowListModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  if (showListModal) {
+  if (showModal) {
     document.body.classList.add('active-modal');
   } else {
     document.body.classList.remove('active-modal');
@@ -44,10 +44,6 @@ function TodoContainer({ handleSetTodoListData, todoListData }) {
     handleSetTodoListData(filteredTodoList);
   }
 
-  async function handleAddTodoList(title, color) {
-    console.log('Hello');
-  }
-
   React.useEffect(() => {
     loadTodoListData();
   }, []);
@@ -56,13 +52,13 @@ function TodoContainer({ handleSetTodoListData, todoListData }) {
     <>
       <Toaster />
       <h1 className="page-title">Tasks</h1>
-      <button onClick={() => setShowListModal(true)} className="add-list">
+      <button onClick={() => setShowModal(true)} className="add-list">
         Create New List <span className="material-symbols-outlined">add</span>
       </button>
-      {showListModal &&
+      {showModal &&
         createPortal(
           <AddTodoListModal
-            onClose={() => setShowListModal(false)}
+            onClose={() => setShowModal(false)}
             onSubmit={() => loadTodoListData()}
           />,
           document.body
