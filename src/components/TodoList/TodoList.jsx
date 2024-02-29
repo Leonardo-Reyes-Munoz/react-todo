@@ -14,7 +14,7 @@ function TodoList({
   onHandleRemoveTodo,
   loadTodoListData,
   handleSetTodoListData,
-  id,
+  listId,
   color,
 }) {
   const [sort, setSort] = React.useState(false);
@@ -43,8 +43,8 @@ function TodoList({
     handleSetTodoListData(sortedList);
   }
 
-  const handleRemoveList = async (id) => {
-    const response = await deleteList(id);
+  const handleRemoveList = async (listId, taskId) => {
+    const response = await deleteList(listId, taskId);
     toast.success(response);
     loadTodoListData();
   };
@@ -70,7 +70,7 @@ function TodoList({
                 <AddTodoModal
                   onClose={() => setShowAddTaskModal(false)}
                   loadTodoListData={loadTodoListData}
-                  listId={id}
+                  listId={listId}
                 />,
                 document.body
               )}
@@ -85,7 +85,7 @@ function TodoList({
               type="button"
               style={{ backgroundColor: bannerColor }}
               className={styles.remove}
-              onClick={() => handleRemoveList(id)}
+              onClick={() => handleRemoveList(listId)}
             >
               <span className="material-symbols-outlined">delete</span>
             </button>
@@ -99,7 +99,7 @@ function TodoList({
               onHandleRemoveTodo={onHandleRemoveTodo}
               index={todoList.indexOf(todo)}
               loadTodoListData={loadTodoListData}
-              listId={id}
+              listId={listId}
             />
           ))}
         </ul>

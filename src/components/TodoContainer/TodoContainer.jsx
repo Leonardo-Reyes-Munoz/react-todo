@@ -35,13 +35,11 @@ function TodoContainer({ handleSetTodoListData, todoListData }) {
     }
   }
 
-  async function handleRemoveTodo(id) {
-    const response = await deleteTodoItem(id);
-    const filteredTodoList = todoListData.filter((item) => {
-      return item.id !== id;
-    });
+  async function handleRemoveTodo(listId, taskId) {
+    console.log('testing', listId, taskId);
+    const response = await deleteTodoItem(listId, taskId);
     toast.success(response);
-    handleSetTodoListData(filteredTodoList);
+    loadTodoListData();
   }
 
   React.useEffect(() => {
@@ -71,10 +69,12 @@ function TodoContainer({ handleSetTodoListData, todoListData }) {
           {todoListData.map((list) => (
             <TodoList
               key={list._id}
-              id={list._id}
+              listId={list._id}
               tableName={list.title}
               todoList={list.tasks}
-              onHandleRemoveTodo={() => handleRemoveTodo()}
+              onHandleRemoveTodo={(listId, taskId) =>
+                handleRemoveTodo(listId, taskId)
+              }
               loadTodoListData={loadTodoListData}
               handleSetTodoListData={handleSetTodoListData}
               color={list.color}

@@ -70,7 +70,7 @@ const deleteList = async (id) => {
   try {
     await axios(config);
   } catch (error) {
-    return console.log('Failed: unable to delete item:', error.message);
+    return console.log('Failed: unable to delete list:', error.message);
   }
   return 'List deleted';
 };
@@ -121,11 +121,11 @@ const updateTodoItem = async (taskId, title, isCompleted, dueDate, listId) => {
   return 'Task was updated.';
 };
 
-const deleteTodoItem = async (id) => {
+const deleteTodoItem = async (listId, taskId) => {
   const jwtToken = localStorage.getItem('jwtToken');
   const config = {
     method: 'delete',
-    url: `${baseURL}/${taskRoute}/${id}`,
+    url: `${baseURL}/${taskRoute}/${listId}/${taskId}`,
     headers: {
       Authorization: `Bearer ${jwtToken}`,
     },

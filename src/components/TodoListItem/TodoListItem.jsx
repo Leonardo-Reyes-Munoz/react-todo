@@ -13,7 +13,7 @@ const TodoListItem = ({
   listId,
 }) => {
   const {
-    id: todoId,
+    _id: taskId,
     title: todoTitle,
     isCompleted: todoIsCompleted,
     dueDate: todoDueDate,
@@ -28,7 +28,7 @@ const TodoListItem = ({
 
   async function handleCheck(currentTodoIsCompleted) {
     const updatedCompleted = !currentTodoIsCompleted;
-    await updateTodoItem(todoId, todoTitle, updatedCompleted, todoDueDate);
+    await updateTodoItem(taskId, todoTitle, updatedCompleted, todoDueDate);
     loadTodoListData();
   }
 
@@ -47,7 +47,7 @@ const TodoListItem = ({
       <div className={styles.TodoItem}>
         <div>
           <input
-            id={todoId}
+            id={todo.id}
             type="checkbox"
             // isCompleted initial value of null with ternary operator
             // allows for updating todo-list in browser without doing a GET request after PATCH request.
@@ -79,7 +79,9 @@ const TodoListItem = ({
           <button
             type="button"
             className={styles.remove}
-            onClick={() => onHandleRemoveTodo(todo.id)}
+            onClick={() => {
+              onHandleRemoveTodo(listId, taskId);
+            }}
           >
             <span className="material-symbols-outlined">delete</span>
           </button>
