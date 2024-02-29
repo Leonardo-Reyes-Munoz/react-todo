@@ -7,12 +7,13 @@ const baseURL = 'http://localhost:3000/api/v1';
 const taskRoute = 'tasks';
 const registerRoute = 'sessions/register';
 const loginRoute = 'sessions/logon';
+const listsRoute = 'lists';
 
-const getAllTodoItems = async () => {
+const getAllListData = async () => {
   const jwtToken = localStorage.getItem('jwtToken');
   const config = {
     method: 'get',
-    url: `${baseURL}/${taskRoute}`,
+    url: `${baseURL}/${listsRoute}`,
     headers: {
       Authorization: `Bearer ${jwtToken}`,
     },
@@ -20,23 +21,13 @@ const getAllTodoItems = async () => {
 
   try {
     const response = await axios(config);
-    // console.log('Initial data:', response.data.tasks);
+    // console.log('Initial data:', response.data.listData);
 
     if (!response || typeof response !== 'object') {
       return console.log(`Error: Unable to receive a response from server.`);
     }
 
-    const todos = response.data.tasks.map((todo) => {
-      const newTodo = {
-        id: todo._id,
-        title: todo.title,
-        isCompleted: todo.isCompleted ?? false,
-        dueDate: todo.dueDate ?? null,
-      };
-      return newTodo;
-    });
-
-    return todos;
+    return response.data.listData;
   } catch (error) {
     return console.log('Failed: Unable to retrieve todo-list:', error.message);
   }
@@ -143,9 +134,9 @@ const loginUser = async (user) => {
 
 export {
   createTodoItem,
-  getAllTodoItems,
   updateTodoItem,
   deleteTodoItem,
   registerUser,
   loginUser,
+  getAllListData,
 };

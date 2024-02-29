@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import AddTodoListModal from '../Modals/AddTodoListModal';
-import { getAllTodoItems, deleteTodoItem } from '../../utils/fetchUtil';
+import { deleteTodoItem, getAllListData } from '../../utils/fetchUtil';
 
 import './TodoContainer.css';
 
@@ -23,7 +23,7 @@ function TodoContainer({ handleSetTodoListData, todoListData }) {
     const jwtToken = localStorage.getItem('jwtToken');
     if (jwtToken) {
       setIsLoading(true);
-      const todoData = await getAllTodoItems();
+      const todoData = await getAllListData();
 
       if (todoData === []) {
         console.log(`No items.`);
@@ -48,9 +48,9 @@ function TodoContainer({ handleSetTodoListData, todoListData }) {
     console.log('Hello');
   }
 
-  // React.useEffect(() => {
-  //   loadTodoListData();
-  // }, []);
+  React.useEffect(() => {
+    loadTodoListData();
+  }, []);
 
   return (
     <>

@@ -1,14 +1,9 @@
 const MockData = [
   {
-    _id: 1,
     title: 'Work Tasks',
-    authorizedUsers: [
-      '9423e745-c463-4a4b-9b28-9cd872b7ed9a',
-      '638db68c-9ebb-4905-83d5-48fb9ff309ef',
-    ],
+    authorizedUsers: ['65dfd087d938c6cba8ebf817'],
     tasks: [
       {
-        _id: 100,
         title: 'Finish report',
         isCompleted: false,
         dueDate: '2024-02-29T00:47:47.594048',
@@ -17,7 +12,6 @@ const MockData = [
         priorityLevel: 'high',
       },
       {
-        _id: 101,
         title: 'Prepare presentation',
         isCompleted: false,
         dueDate: '2024-03-02T00:47:47.594078',
@@ -28,12 +22,10 @@ const MockData = [
     ],
   },
   {
-    _id: 2,
     title: 'Personal Errands',
-    authorizedUsers: ['a4b360e6-4e14-4e52-a801-4326ada92852'],
+    authorizedUsers: ['65dfd087d938c6cba8ebf817'],
     tasks: [
       {
-        _id: 102,
         title: 'Grocery shopping',
         isCompleted: true,
         dueDate: '2024-02-26T00:47:47.594125',
@@ -42,7 +34,6 @@ const MockData = [
         priorityLevel: 'medium',
       },
       {
-        _id: 103,
         title: 'Book dentist appointment',
         isCompleted: false,
         dueDate: '2024-03-08T00:47:47.594134',
@@ -53,15 +44,10 @@ const MockData = [
     ],
   },
   {
-    _id: 3,
     title: 'Learning Goals',
-    authorizedUsers: [
-      '93af35d3-2a5a-4587-96a9-6dbdff3f104a',
-      '2fb35997-9570-40d9-b392-521ac6ea230b',
-    ],
+    authorizedUsers: ['65dfd087d938c6cba8ebf817'],
     tasks: [
       {
-        _id: 104,
         title: 'Complete React Course',
         isCompleted: false,
         dueDate: '2024-03-13T01:14:50.772841',
@@ -70,7 +56,6 @@ const MockData = [
         priorityLevel: 'high',
       },
       {
-        _id: 105,
         title: "Read 'Clean Code'",
         isCompleted: false,
         dueDate: '2024-03-28T01:14:50.773114',
@@ -79,7 +64,6 @@ const MockData = [
         priorityLevel: 'medium',
       },
       {
-        _id: 106,
         title: 'Practice LeetCode problems',
         isCompleted: false,
         dueDate: '2024-03-03T01:14:50.773561',
@@ -88,7 +72,6 @@ const MockData = [
         priorityLevel: 'high',
       },
       {
-        _id: 107,
         title: 'Build a personal project',
         isCompleted: false,
         dueDate: '2024-04-27T01:14:50.774244',
@@ -99,12 +82,10 @@ const MockData = [
     ],
   },
   {
-    _id: 4,
     title: 'Vacation Planning',
-    authorizedUsers: ['a61c5061-67e1-41ee-8b62-0a7e40b4b3c1'],
+    authorizedUsers: ['65dfd087d938c6cba8ebf817'],
     tasks: [
       {
-        _id: 108,
         title: 'Book flights',
         isCompleted: false,
         dueDate: '2024-03-05T01:14:50.774846',
@@ -113,7 +94,6 @@ const MockData = [
         priorityLevel: 'high',
       },
       {
-        _id: 109,
         title: 'Reserve hotels',
         isCompleted: false,
         dueDate: '2024-03-07T01:14:50.774892',
@@ -122,7 +102,6 @@ const MockData = [
         priorityLevel: 'high',
       },
       {
-        _id: 110,
         title: 'Plan itinerary',
         isCompleted: false,
         dueDate: '2024-03-12T01:14:50.774907',
@@ -131,7 +110,6 @@ const MockData = [
         priorityLevel: 'medium',
       },
       {
-        _id: 111,
         title: 'Renew passport',
         isCompleted: true,
         dueDate: '2024-01-28T01:14:50.774920',
