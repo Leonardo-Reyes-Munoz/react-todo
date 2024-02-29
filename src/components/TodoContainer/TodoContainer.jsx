@@ -44,7 +44,7 @@ function TodoContainer({ handleSetTodoListData, todoListData }) {
     handleSetTodoListData(filteredTodoList);
   }
 
-  async function handleAddTodoList() {
+  async function handleAddTodoList(title, color) {
     console.log('Hello');
   }
 
@@ -63,7 +63,7 @@ function TodoContainer({ handleSetTodoListData, todoListData }) {
         createPortal(
           <AddTodoListModal
             onClose={() => setShowListModal(false)}
-            onSubmit={() => handleAddTodoList()}
+            onSubmit={() => loadTodoListData()}
           />,
           document.body
         )}

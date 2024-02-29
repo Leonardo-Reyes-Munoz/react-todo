@@ -33,6 +33,28 @@ const getAllListData = async () => {
   }
 };
 
+const createTodoList = async (title, color) => {
+  const jwtToken = localStorage.getItem('jwtToken');
+  const config = {
+    method: 'post',
+    url: `${baseURL}/${listsRoute}`,
+    data: {
+      title,
+      color,
+    },
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
+    },
+  };
+
+  try {
+    await axios(config);
+  } catch (error) {
+    return console.log('Failed: Unable to create new list:', error.message);
+  }
+  return 'New list created';
+};
+
 const createTodoItem = async (title, dueDate) => {
   const jwtToken = localStorage.getItem('jwtToken');
   const config = {
@@ -139,4 +161,5 @@ export {
   registerUser,
   loginUser,
   getAllListData,
+  createTodoList,
 };

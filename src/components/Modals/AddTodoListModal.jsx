@@ -1,11 +1,9 @@
 import './modal.css';
 import toast, { Toaster } from 'react-hot-toast';
-import { useState } from 'react';
+
+import { createTodoList } from '../../utils/fetchUtil';
 
 export default function AddTodoListModal({ onClose, onSubmit }) {
-  const [listTitle, setListTitle] = useState('');
-  const [color, setColor] = useState('');
-
   async function handleAddSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -13,12 +11,12 @@ export default function AddTodoListModal({ onClose, onSubmit }) {
 
     const newTitle = formProps.newTitle;
     const todoListColor = formProps.color;
+
     console.log(newTitle, todoListColor);
-    onSubmit(newTitle, todoListColor);
+    const response = await createTodoList(newTitle, todoListColor);
+    toast.success(response);
 
-    setListTitle('');
-    setColor('');
-
+    onSubmit();
     onClose();
   }
 
@@ -27,7 +25,7 @@ export default function AddTodoListModal({ onClose, onSubmit }) {
       <Toaster />
       <div className="overlay" onClick={onClose}></div>
       <div className="modalContent">
-        <h2 className="modalTitle">Add New Task List</h2>
+        <h2 className="modalTitle">Add New List</h2>
         <form onSubmit={handleAddSubmit}>
           <div className="inputItem">
             <label htmlFor="newTitle">List name:</label>
@@ -36,15 +34,52 @@ export default function AddTodoListModal({ onClose, onSubmit }) {
           <div className="color-picker">
             <fieldset>
               <legend>Choose a color</legend>
-              <input type="radio" name="color" value="yellow"></input>
-              <input type="radio" name="color" value="green"></input>
-              <input type="radio" name="color" value="orange"></input>
-              <input type="radio" name="color" value="purple"></input>
+              <input
+                type="radio"
+                id="color-yellow"
+                name="color"
+                value="yellow"
+                defaultChecked
+              ></input>
+              <label
+                htmlFor="color-yellow"
+                style={{ backgroundColor: '#fae360' }}
+              ></label>
+              <input
+                type="radio"
+                name="color"
+                id="color-green"
+                value="green"
+              ></input>
+              <label
+                htmlFor="color-green"
+                style={{ backgroundColor: '#4e7868' }}
+              ></label>
+              <input
+                type="radio"
+                name="color"
+                value="orange"
+                id="color-purple"
+              ></input>
+              <label
+                htmlFor="color-purple"
+                style={{ backgroundColor: '#7d7278' }}
+              ></label>
+              <input
+                type="radio"
+                name="color"
+                value="purple"
+                id="color-pink"
+              ></input>
+              <label
+                htmlFor="color-pink"
+                style={{ backgroundColor: '#f06a8a' }}
+              ></label>
             </fieldset>
           </div>
           <div className="btnContainer">
             <button type="submit" className="submitEdit">
-              Add Task
+              Add List
             </button>
             <button
               onClick={(e) => {
