@@ -1,10 +1,9 @@
 .home {
   background-color: var(--relaxed-orange);
   color: whitesmoke;
-  position: fixed;
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 90%;
+  margin: auto;
+  margin-top: 3rem;
 }
 
 body:has(.home) {
@@ -14,6 +13,7 @@ body:has(.home) {
 .title {
   font-family: 'Sriracha', cursive;
   font-size: 2.5rem;
+  text-align: center;
 }
 
 .action {
@@ -73,7 +73,6 @@ body:has(.home) {
   border-color: rgba(119, 115, 115, 0.465);
   color: black;
   padding: 1em;
-
   border-radius: 0.5em;
   margin-top: 1rem;
   font-size: 0.8rem;
@@ -90,7 +89,7 @@ body:has(.home) {
 .inputItem > input[type='email' i],
 .inputItem > input[type='password' i],
 .inputItem > input[type='date' i] {
-  width: auto;
+  width: 70%;
   height: auto;
   font-size: 100%;
   border-radius: 0.25rem;
@@ -99,11 +98,35 @@ body:has(.home) {
   font-family: 'Playpen Sans', cursive;
 }
 
+.login-information {
+  background-color: whitesmoke;
+  color: black;
+  font-family: 'Playpen Sans', cursive;
+  padding: 0.25em 1em;
+  margin-top: 0.5em;
+  border-radius: 0.5em;
+  font-size: 0.8rem;
+}
+
+.credentials {
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.accent {
+  font-style: italic;
+  background-color: rgba(255, 255, 0, 0.472);
+}
+
 /* TABLET FORMATTING */
 @media screen and (min-width: 435px) {
   input[type='text' i],
   input[type='date' i] {
     width: 70%;
-    max-width: 25rem;
+  }
+
+  .home,
+  .login-information {
+    width: 20rem;
   }
 }

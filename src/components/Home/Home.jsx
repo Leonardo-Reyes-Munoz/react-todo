@@ -32,6 +32,18 @@ function Home() {
           </button>
         </div>
       )}
+      <div className="login-information">
+        <p>Welcome! Use these credentials to access the testing app: </p>
+        <p>
+          Email: <span className="credentials">testing@example.com</span>
+        </p>
+        <p>
+          Password: <span className="credentials">secret</span>
+        </p>
+        <p className="accent">
+          You can also create your own account. Have fun!
+        </p>
+      </div>
     </div>
   );
 }
