@@ -1,22 +1,27 @@
 import './modal.css';
 import { updateTodoItem } from '../../utils/fetchUtil';
+import toast, { Toaster } from 'react-hot-toast';
 
-export default function EditModal({ onClose, todo, loadTodoList }) {
-  const { title, id, dueDate, isChecked } = todo;
+export default function EditModal({ onClose, todo, loadTodoListData, listId }) {
+  const { title, _id: taskId, dueDate, isChecked } = todo;
 
   async function handleEditSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const formProps = Object.fromEntries(formData);
-    console.log(formProps);
     const newTitle = formProps.newTitle;
     const updatedDueDate = formProps.dueDate === '' ? null : formProps.dueDate;
 
-    console.log('Due Date:', updatedDueDate);
-
-    await updateTodoItem(id, newTitle, isChecked, updatedDueDate);
+    const response = await updateTodoItem(
+      taskId,
+      newTitle,
+      isChecked,
+      updatedDueDate,
+      listId
+    );
     onClose();
-    loadTodoList();
+    loadTodoListData();
+    toast.success(response);
   }
 
   let formattedDueDate = '';
@@ -27,6 +32,7 @@ export default function EditModal({ onClose, todo, loadTodoList }) {
 
   return (
     <div className="modal">
+      <Toaster />
       <div className="overlay" onClick={onClose}></div>
       <div className="modalContent">
         <h2 className="modalTitle">Edit Task</h2>

@@ -102,3 +102,20 @@
 span {
   font-family: 'Sriracha', cursive;
 }
+
+input[type='radio'] + label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+input[type='radio'] + label:hover {
+  opacity: 0.7;
+}
+
+.color-picker {
+  text-align: center;
+}

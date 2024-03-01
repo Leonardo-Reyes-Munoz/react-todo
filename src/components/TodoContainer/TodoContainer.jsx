@@ -1,108 +1,88 @@
 import React from 'react';
 import TodoList from '../TodoList/TodoList';
-import styles from './TodoContainer.module.css';
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import AddTodoModal from '../Modals/AddTodoModal';
 import toast, { Toaster } from 'react-hot-toast';
+import AddTodoListModal from '../Modals/AddTodoListModal';
+import { deleteTodoItem, getAllListData } from '../../utils/fetchUtil';
 
-import { getAllTodoItems, deleteTodoItem } from '../../utils/fetchUtil';
-import { sortByIsCompleted, sortByDueDate } from '../../utils/sortUtil';
+import './TodoContainer.css';
 
-function TodoContainer({ tableName, handleSetTodoList, todoList }) {
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [sort, setSort] = React.useState(false);
-
+function TodoContainer({ handleSetTodoListData, todoListData }) {
+  const [isLoading, setIsLoading] = React.useState(false);
   const [showModal, setShowModal] = useState(false);
+
   if (showModal) {
     document.body.classList.add('active-modal');
   } else {
     document.body.classList.remove('active-modal');
   }
 
-  async function loadTodoList() {
+  // Will need to be changed to load listData variable which will be an array of objects.
+  async function loadTodoListData() {
     const jwtToken = localStorage.getItem('jwtToken');
     if (jwtToken) {
       setIsLoading(true);
-      const todos = await getAllTodoItems();
+      const todoData = await getAllListData();
 
-      if (todos === []) {
+      if (todoData === []) {
         console.log(`No items.`);
         setIsLoading(!isLoading);
         return;
       }
-      const sortedList = sortByIsCompleted(todos);
-
-      handleSetTodoList(sortedList);
+      handleSetTodoListData(todoData);
       setIsLoading(false);
     }
   }
 
-  async function handleRemoveTodo(id) {
-    const response = await deleteTodoItem(id);
-    const filteredTodoList = todoList.filter((item) => {
-      return item.id !== id;
-    });
+  async function handleRemoveTodo(listId, taskId) {
+    console.log('testing', listId, taskId);
+    const response = await deleteTodoItem(listId, taskId);
     toast.success(response);
-    handleSetTodoList(filteredTodoList);
-  }
-
-  function handleSort() {
-    let sortedList = sortByDueDate(todoList, sort);
-    sortedList = sortByIsCompleted(sortedList);
-    setSort(!sort);
-    handleSetTodoList(sortedList);
+    loadTodoListData();
   }
 
   React.useEffect(() => {
-    loadTodoList();
+    loadTodoListData();
   }, []);
 
   return (
     <>
       <Toaster />
       <h1 className="page-title">Tasks</h1>
+      <button onClick={() => setShowModal(true)} className="add-list">
+        Create New List <span className="material-symbols-outlined">add</span>
+      </button>
+      {showModal &&
+        createPortal(
+          <AddTodoListModal
+            onClose={() => setShowModal(false)}
+            onSubmit={() => loadTodoListData()}
+          />,
+          document.body
+        )}
 
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <div className={styles.TodoContainer}>
-          <div className={styles.containerHeader}>
-            <h1 className={styles.title}>{tableName} </h1>
-            <div className={styles.btnContainer}>
-              <button
-                className={styles.sort}
-                onClick={() => setShowModal(true)}
-              >
-                <span className="material-symbols-outlined">add</span>
-              </button>
-              {showModal &&
-                createPortal(
-                  <AddTodoModal
-                    onClose={() => setShowModal(false)}
-                    loadTodoList={loadTodoList}
-                  />,
-                  document.body
-                )}
-              <button className={styles.sort} onClick={() => handleSort()}>
-                <span className="material-symbols-outlined">swap_vert</span>
-              </button>
-            </div>
-          </div>
-          <TodoList
-            todoList={todoList}
-            handleRemoveTodo={handleRemoveTodo}
-            loadTodoList={loadTodoList}
-          />
+        <div className="todo-container">
+          {todoListData.map((list) => (
+            <TodoList
+              key={list._id}
+              listId={list._id}
+              tableName={list.title}
+              todoList={list.tasks}
+              onHandleRemoveTodo={(listId, taskId) =>
+                handleRemoveTodo(listId, taskId)
+              }
+              loadTodoListData={loadTodoListData}
+              color={list.color}
+            />
+          ))}
         </div>
       )}
     </>
   );
 }
-
-TodoContainer.propTypes = {
-  tableName: PropTypes.string,
-};
 
 export default TodoContainer;

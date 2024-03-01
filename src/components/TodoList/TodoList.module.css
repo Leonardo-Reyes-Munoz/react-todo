@@ -1,8 +1,8 @@
 .TodoContainer {
   background-color: var(--off-white);
   border-radius: 1rem;
-  max-width: 90%;
-  margin: auto;
+  width: 90%;
+  margin: 2rem auto;
   padding-top: 0;
   box-shadow: 5px 5px 5px var(--relaxed-gray);
 }
@@ -35,7 +35,8 @@ ul {
   margin: auto;
 }
 
-.sort {
+.ListBtn,
+.remove {
   background-color: var(--happy-yellow);
   color: #2e2e2e;
   border-style: none;
@@ -43,7 +44,7 @@ ul {
   margin-left: 2rem;
 }
 
-.sort:hover {
+.ListBtn:hover {
   color: var(--action-blue);
 }
 
@@ -54,6 +55,10 @@ input[type='text' i] {
 /* TABLET FORMATTING*/
 @media only screen and (min-width: 435px) {
   .TodoContainer {
-    max-width: 27rem;
+    width: 27rem;
   }
+}
+
+.remove:hover {
+  color: var(--action-red);
 }

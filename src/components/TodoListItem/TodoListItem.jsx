@@ -5,9 +5,15 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { updateTodoItem } from '../../utils/fetchUtil';
 
-const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
+const TodoListItem = ({
+  todo,
+  onHandleRemoveTodo,
+  loadTodoListData,
+  index,
+  listId,
+}) => {
   const {
-    id: todoId,
+    _id: taskId,
     title: todoTitle,
     isCompleted: todoIsCompleted,
     dueDate: todoDueDate,
@@ -22,8 +28,14 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
 
   async function handleCheck(currentTodoIsCompleted) {
     const updatedCompleted = !currentTodoIsCompleted;
-    await updateTodoItem(todoId, todoTitle, updatedCompleted, todoDueDate);
-    loadTodoList();
+    await updateTodoItem(
+      taskId,
+      todoTitle,
+      updatedCompleted,
+      todoDueDate,
+      listId
+    );
+    loadTodoListData();
   }
 
   //parse date into a more readable date string
@@ -41,7 +53,7 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
       <div className={styles.TodoItem}>
         <div>
           <input
-            id={todoId}
+            id={todo.id}
             type="checkbox"
             // isCompleted initial value of null with ternary operator
             // allows for updating todo-list in browser without doing a GET request after PATCH request.
@@ -64,7 +76,8 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
               <EditModal
                 onClose={() => setShowModal(false)}
                 todo={todo}
-                loadTodoList={loadTodoList}
+                loadTodoListData={loadTodoListData}
+                listId={listId}
               />,
               document.body
             )}
@@ -72,7 +85,9 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
           <button
             type="button"
             className={styles.remove}
-            onClick={() => handleRemoveTodo(todo.id)}
+            onClick={() => {
+              onHandleRemoveTodo(listId, taskId);
+            }}
           >
             <span className="material-symbols-outlined">delete</span>
           </button>
@@ -85,7 +100,6 @@ const TodoListItem = ({ todo, handleRemoveTodo, loadTodoList }) => {
 
 TodoListItem.propTypes = {
   todo: PropTypes.object,
-  handleRemoveTodo: PropTypes.func.isRequired,
 };
 
 export default TodoListItem;

@@ -5,25 +5,24 @@ import { useNavigate } from 'react-router-dom';
 
 function App() {
   const navigate = useNavigate();
-  const [todoList, setTodoList] = React.useState([]);
+  const [todoListData, setTodoListData] = React.useState([]);
 
   function handleLogout() {
     localStorage.clear();
-    handleSetTodoList([]);
+    handleSetTodoListData([]);
     navigate('/');
   }
 
-  function handleSetTodoList(updatedList) {
-    setTodoList(updatedList);
+  function handleSetTodoListData(updatedList) {
+    setTodoListData(updatedList);
   }
 
   return (
     <>
       <Navbar handleLogout={handleLogout} />
       <TodoContainer
-        tableName="Today"
-        handleSetTodoList={handleSetTodoList}
-        todoList={todoList}
+        handleSetTodoListData={handleSetTodoListData}
+        todoListData={todoListData}
       />
     </>
   );

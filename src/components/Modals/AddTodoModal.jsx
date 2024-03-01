@@ -2,7 +2,7 @@ import './modal.css';
 import { createTodoItem } from '../../utils/fetchUtil';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function AddTodoModal({ onClose, loadTodoList }) {
+export default function AddTodoModal({ onClose, loadTodoListData, listId }) {
   async function handleAddSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -11,9 +11,9 @@ export default function AddTodoModal({ onClose, loadTodoList }) {
     const newTitle = formProps.newTitle;
     const updatedDueDate = formProps.dueDate === '' ? null : formProps.dueDate;
 
-    const response = await createTodoItem(newTitle, updatedDueDate);
+    const response = await createTodoItem(newTitle, updatedDueDate, listId);
     onClose();
-    loadTodoList();
+    loadTodoListData();
     toast.success(response);
   }
 

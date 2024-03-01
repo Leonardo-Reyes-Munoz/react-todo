@@ -1,0 +1,21 @@
+.todo-container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  flex-shrink: none;
+}
+
+.add-list {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--happy-blue);
+  color: whitesmoke;
+  width: 20rem;
+  border-radius: 1em;
+}
+
+.add-list:hover {
+  background-color: var(--relaxed-orange);
+}

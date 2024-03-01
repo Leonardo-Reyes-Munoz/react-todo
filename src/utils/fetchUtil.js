@@ -7,12 +7,15 @@ const baseURL = 'https://tasktacklerapi.onrender.com/api/v1';
 const taskRoute = 'tasks';
 const registerRoute = 'sessions/register';
 const loginRoute = 'sessions/logon';
+const listsRoute = 'lists';
 
-const getAllTodoItems = async () => {
+// * || LIST HTTP Requests *
+
+const getAllListData = async () => {
   const jwtToken = localStorage.getItem('jwtToken');
   const config = {
     method: 'get',
-    url: `${baseURL}/${taskRoute}`,
+    url: `${baseURL}/${listsRoute}`,
     headers: {
       Authorization: `Bearer ${jwtToken}`,
     },
@@ -20,33 +23,65 @@ const getAllTodoItems = async () => {
 
   try {
     const response = await axios(config);
-    // console.log('Initial data:', response.data.tasks);
+    // console.log('Initial data:', response.data.listData);
 
     if (!response || typeof response !== 'object') {
       return console.log(`Error: Unable to receive a response from server.`);
     }
 
-    const todos = response.data.tasks.map((todo) => {
-      const newTodo = {
-        id: todo._id,
-        title: todo.title,
-        isCompleted: todo.isCompleted ?? false,
-        dueDate: todo.dueDate ?? null,
-      };
-      return newTodo;
-    });
-
-    return todos;
+    return response.data.listData;
   } catch (error) {
     return console.log('Failed: Unable to retrieve todo-list:', error.message);
   }
 };
 
-const createTodoItem = async (title, dueDate) => {
+const createTodoList = async (title, color) => {
   const jwtToken = localStorage.getItem('jwtToken');
   const config = {
     method: 'post',
-    url: `${baseURL}/${taskRoute}`,
+    url: `${baseURL}/${listsRoute}`,
+    data: {
+      title,
+      color,
+    },
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
+    },
+  };
+
+  try {
+    await axios(config);
+  } catch (error) {
+    return console.log('Failed: Unable to create new list:', error.message);
+  }
+  return 'New list created';
+};
+
+const deleteList = async (id) => {
+  const jwtToken = localStorage.getItem('jwtToken');
+  const config = {
+    method: 'delete',
+    url: `${baseURL}/${listsRoute}/${id}`,
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
+    },
+  };
+
+  try {
+    await axios(config);
+  } catch (error) {
+    return console.log('Failed: unable to delete list:', error.message);
+  }
+  return 'List deleted';
+};
+
+// * || TASK HTTP Requests *
+
+const createTodoItem = async (title, dueDate, listId) => {
+  const jwtToken = localStorage.getItem('jwtToken');
+  const config = {
+    method: 'post',
+    url: `${baseURL}/${taskRoute}/${listId}`,
     data: {
       title,
       dueDate,
@@ -64,11 +99,11 @@ const createTodoItem = async (title, dueDate) => {
   return 'New task created';
 };
 
-const updateTodoItem = async (id, title, isCompleted, dueDate) => {
+const updateTodoItem = async (taskId, title, isCompleted, dueDate, listId) => {
   const jwtToken = localStorage.getItem('jwtToken');
   const config = {
     method: 'patch',
-    url: `${baseURL}/${taskRoute}/${id}`,
+    url: `${baseURL}/${taskRoute}/${listId}/${taskId}`,
     data: {
       title,
       isCompleted,
@@ -86,11 +121,11 @@ const updateTodoItem = async (id, title, isCompleted, dueDate) => {
   return 'Task was updated.';
 };
 
-const deleteTodoItem = async (id) => {
+const deleteTodoItem = async (listId, taskId) => {
   const jwtToken = localStorage.getItem('jwtToken');
   const config = {
     method: 'delete',
-    url: `${baseURL}/${taskRoute}/${id}`,
+    url: `${baseURL}/${taskRoute}/${listId}/${taskId}`,
     headers: {
       Authorization: `Bearer ${jwtToken}`,
     },
@@ -104,7 +139,7 @@ const deleteTodoItem = async (id) => {
   return 'Task deleted';
 };
 
-// User Registration and Login HTTP Requests
+// * || REGISTRATION AND USER LOGIN *
 
 const registerUser = async (user) => {
   const config = {
@@ -143,9 +178,11 @@ const loginUser = async (user) => {
 
 export {
   createTodoItem,
-  getAllTodoItems,
   updateTodoItem,
   deleteTodoItem,
   registerUser,
   loginUser,
+  getAllListData,
+  createTodoList,
+  deleteList,
 };
