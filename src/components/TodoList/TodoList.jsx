@@ -16,7 +16,7 @@ function TodoList({
   listId,
   color,
 }) {
-  const [sort, setSort] = React.useState(false);
+  const [sort, setSort] = React.useState(true);
   const [showAddTaskModal, setShowAddTaskModal] = useState(false);
   let initialSortedList = sortByDueDate(todoList, sort);
   initialSortedList = sortByIsCompleted(initialSortedList);
