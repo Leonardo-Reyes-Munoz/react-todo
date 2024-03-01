@@ -28,7 +28,13 @@ const TodoListItem = ({
 
   async function handleCheck(currentTodoIsCompleted) {
     const updatedCompleted = !currentTodoIsCompleted;
-    await updateTodoItem(taskId, todoTitle, updatedCompleted, todoDueDate);
+    await updateTodoItem(
+      taskId,
+      todoTitle,
+      updatedCompleted,
+      todoDueDate,
+      listId
+    );
     loadTodoListData();
   }
 

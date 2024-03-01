@@ -76,7 +76,6 @@ function TodoContainer({ handleSetTodoListData, todoListData }) {
                 handleRemoveTodo(listId, taskId)
               }
               loadTodoListData={loadTodoListData}
-              handleSetTodoListData={handleSetTodoListData}
               color={list.color}
             />
           ))}

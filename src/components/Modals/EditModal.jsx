@@ -5,8 +5,6 @@ import toast, { Toaster } from 'react-hot-toast';
 export default function EditModal({ onClose, todo, loadTodoListData, listId }) {
   const { title, _id: taskId, dueDate, isChecked } = todo;
 
-  console.log(taskId);
-
   async function handleEditSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);

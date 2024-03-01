@@ -1,7 +1,7 @@
 .TodoContainer {
   background-color: var(--off-white);
   border-radius: 1rem;
-  max-width: 90%;
+  width: 90%;
   margin: 2rem auto;
   padding-top: 0;
   box-shadow: 5px 5px 5px var(--relaxed-gray);
@@ -55,7 +55,7 @@ input[type='text' i] {
 /* TABLET FORMATTING*/
 @media only screen and (min-width: 435px) {
   .TodoContainer {
-    max-width: 27rem;
+    width: 27rem;
   }
 }
 

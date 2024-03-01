@@ -13,12 +13,14 @@ function TodoList({
   todoList,
   onHandleRemoveTodo,
   loadTodoListData,
-  handleSetTodoListData,
   listId,
   color,
 }) {
   const [sort, setSort] = React.useState(false);
   const [showAddTaskModal, setShowAddTaskModal] = useState(false);
+  let initialSortedList = sortByDueDate(todoList, sort);
+  initialSortedList = sortByIsCompleted(initialSortedList);
+  const [listItems, setListItems] = useState(initialSortedList);
 
   if (showAddTaskModal) {
     document.body.classList.add('active-modal');
@@ -37,10 +39,10 @@ function TodoList({
   const bannerColor = colorMAP[color] || '#fae360';
 
   function handleSort() {
-    let sortedList = sortByDueDate(todoList, sort);
+    let sortedList = sortByDueDate(listItems, sort);
     sortedList = sortByIsCompleted(sortedList);
     setSort(!sort);
-    handleSetTodoListData(sortedList);
+    setListItems(sortedList);
   }
 
   const handleRemoveList = async (listId, taskId) => {
